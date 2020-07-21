@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 14:09:21 by qdang             #+#    #+#             */
-/*   Updated: 2020/07/18 23:18:20 by qdang            ###   ########.fr       */
+/*   Updated: 2020/07/19 16:32:34 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int		get_next_line_2(const int fd, char **save, char **line)
 	*line = ft_strsub(save[fd], 0, i);
 	if (save[fd][i] == 0)
 	{
-		save[fd] = NULL;
 		free(save[fd]);
+		save[fd] = NULL;
 	}
 	else
 	{
@@ -58,9 +58,6 @@ int		get_next_line(const int fd, char **line)
 			break ;
 	}
 	if (i == 0 && (save[fd] == NULL || !save[fd][0]))
-	{
-		*line = NULL;
 		return (0);
-	}
 	return (get_next_line_2(fd, save, line));
 }

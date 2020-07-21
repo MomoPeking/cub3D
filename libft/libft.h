@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 14:12:16 by qdang             #+#    #+#             */
-/*   Updated: 2020/07/18 22:38:06 by qdang            ###   ########.fr       */
+/*   Updated: 2020/07/20 10:22:54 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@
 
 void	*ft_memset(void *b, int c, size_t len);
 void	ft_bzero(void *s, size_t n);
+void	*ft_memalloc(size_t size);
+
+/*
+** Number
+*/
+
+int		ft_atoi(const char *str);
 
 /*
 ** String
@@ -36,6 +43,9 @@ char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strdup(const char *s1);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strsub(char const *s, unsigned int start, size_t len);
+char	**ft_strsplit(char const *s, char c);
+int		ft_strchk(char *str1, char *str2, char c);
+int		ft_strcmp(const char *s1, const char *s2);
 
 /*
 ** Output
