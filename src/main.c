@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 16:36:44 by qdang             #+#    #+#             */
-/*   Updated: 2020/07/21 18:25:09 by qdang            ###   ########.fr       */
+/*   Updated: 2020/07/22 14:14:59 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,25 @@ int		main(int ac, char **av)
 			if ((fd = open(av[1], O_RDONLY)) == -1)
 				return (OPEN_ERR);
 			else
+			{
 				err = store_info(s, fd);
+				if (close(fd) == -1)
+					return (CLOSE_ERR);
+	/*			if (err == 0)
+				{
+					fd = open(av[1], O_RDONLY);
+					err = store_map(s, fd);
+				}				
+	*/		}
 		}
 		else
 			err = END_ERR;
 	}
 	free_info(s);
 	printf("x: %d, y: %d\n", s->map_x, s->map_y);
-	printf("r: %d * %d\n", s->r_x, s->r_y);
-	printf("r: %d, g: %d, b: %d\n", s->f_r, s->f_g, s->f_b);
-	printf("r: %d, g: %d, b: %d\n", s->c_r, s->c_g, s->c_b);
+//	printf("r: %d * %d\n", s->r_x, s->r_y);
+//	printf("r: %d, g: %d, b: %d\n", s->f_r, s->f_g, s->f_b);
+//	printf("r: %d, g: %d, b: %d\n", s->c_r, s->c_g, s->c_b);
 //	system("leaks cub3D");
 	err != 0 ? ft_error(err) : 0;
 	return (0);

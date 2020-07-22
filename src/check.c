@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/19 17:42:45 by qdang             #+#    #+#             */
-/*   Updated: 2020/07/21 18:19:34 by qdang            ###   ########.fr       */
+/*   Updated: 2020/07/22 11:56:38 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,29 @@ int		check_color(char **color)
 	{
 		free_split(color);
 		return (COL_ERR);
+	}
+	return (0);
+}
+
+int		check_map_2(t_info *s)
+{
+	int		i;
+	int		j;
+	int		sig;
+	char	c;
+	
+	i = -1;
+	sig = 0;
+	while (++i < s->map_y)
+	{
+		j = -1;
+		while (++j < s->map_x)
+		{
+			c = s->map[i][j];
+			if (c != ' ' && c != '0' && c != '1' && c != '2' &&
+				c != 'N' && c != 'S' && c != 'E' && c != 'W')
+				return (MAP_ERR);
+		}
 	}
 	return (0);
 }

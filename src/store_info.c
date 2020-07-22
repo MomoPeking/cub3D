@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 12:11:22 by qdang             #+#    #+#             */
-/*   Updated: 2020/07/21 18:24:34 by qdang            ###   ########.fr       */
+/*   Updated: 2020/07/21 23:00:31 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 static int	store_resolution(t_info *s, char **split)
 {
 	if (count_split(split) != 3)
-		return (R_ERR);
+		return (RES_ERR);
 	if (check_unsigned_int(split[1]) == 0 || check_unsigned_int(split[2]) == 0)
-		return (R_ERR);
+		return (RES_ERR);
 	s->r_x = ft_atoi(split[1]);
 	s->r_y = ft_atoi(split[2]);
 	if (s->r_x == 0 || s->r_y == 0)
-		return (R_ERR);
+		return (RES_ERR);
 	s->sig_info *= R_SIG;
 	return (0);
 }

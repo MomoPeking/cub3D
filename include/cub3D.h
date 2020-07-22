@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 14:04:06 by qdang             #+#    #+#             */
-/*   Updated: 2020/07/21 18:24:15 by qdang            ###   ########.fr       */
+/*   Updated: 2020/07/22 11:38:21 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,14 @@
 # include <stdio.h> // 記得刪除
 
 # define OPEN_ERR	1
-# define READ_ERR	2
-# define END_ERR	3
-# define R_ERR		4
-# define TEX_ERR	5
-# define COL_ERR	6
-# define INFO_ERR	7
-# define MAP_ERR	8
+# define CLOSE_ERR	2
+# define READ_ERR	3
+# define END_ERR	4
+# define RES_ERR	5
+# define TEX_ERR	6
+# define COL_ERR	7
+# define INFO_ERR	8
+# define MAP_ERR	9
 
 # define R_SIG		2
 # define NO_SIG		3
@@ -56,12 +57,14 @@ typedef	struct	s_info
 	int		sig_map;
 	int		map_x;
 	int		map_y;
+	char	**map;
 }				t_info;
 
 int		count_split(char **str);
 int		check_unsigned_int(char *str);
 int		check_color(char **color);
 int		check_map(char *line, t_info *s);
+int		check_map_2(t_info *s);
 
 t_info	*init_info(t_info *s);
 void	free_split(char **str);
@@ -75,5 +78,6 @@ int		store_texture_we(t_info *s, char **split);
 int		store_texture_ea(t_info *s, char **split);
 int		store_texture_s(t_info *s, char **split);
 int		store_info(t_info *s, int fd);
+int		store_map(t_info *s, int fd);
 
 #endif
