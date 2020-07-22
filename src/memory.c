@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 11:12:00 by qdang             #+#    #+#             */
-/*   Updated: 2020/07/20 15:07:20 by qdang            ###   ########.fr       */
+/*   Updated: 2020/07/21 18:20:58 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_info	*init_info(t_info *s)
 {
-	s->signal = 1;
+	s->sig_info = 1;
 	s->no = NULL;
 	s->so = NULL;
 	s->we = NULL;
@@ -33,7 +33,7 @@ void	free_split(char **str)
 		while (str[i] != NULL)
 		{
 			free(str[i]);
-			i++;	
+			i++;
 		}
 		free(str);
 	}

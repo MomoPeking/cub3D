@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 14:04:06 by qdang             #+#    #+#             */
-/*   Updated: 2020/07/20 18:27:42 by qdang            ###   ########.fr       */
+/*   Updated: 2020/07/21 18:24:15 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define TEX_ERR	5
 # define COL_ERR	6
 # define INFO_ERR	7
+# define MAP_ERR	8
 
 # define R_SIG		2
 # define NO_SIG		3
@@ -51,12 +52,16 @@ typedef	struct	s_info
 	int		c_r;
 	int		c_g;
 	int		c_b;
-	int		signal;
+	int		sig_info;
+	int		sig_map;
+	int		map_x;
+	int		map_y;
 }				t_info;
 
 int		count_split(char **str);
 int		check_unsigned_int(char *str);
 int		check_color(char **color);
+int		check_map(char *line, t_info *s);
 
 t_info	*init_info(t_info *s);
 void	free_split(char **str);
@@ -64,14 +69,11 @@ void	free_info(t_info *s);
 
 void	ft_error(int err);
 
-int		store_resolution(t_info *s, char **split);
 int		store_texture_no(t_info *s, char **split);
 int		store_texture_so(t_info *s, char **split);
 int		store_texture_we(t_info *s, char **split);
 int		store_texture_ea(t_info *s, char **split);
 int		store_texture_s(t_info *s, char **split);
-int		store_color_floor(t_info *s, char **split);
-int		store_color_ceiling(t_info *s, char **split);
 int		store_info(t_info *s, int fd);
 
 #endif
