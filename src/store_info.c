@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../include/cub3D.h"
 
 static int	store_resolution(t_info *s, char **split)
 {
@@ -116,8 +116,10 @@ int			store_info(t_info *s, int fd)
 			ft_strchk(line, " ", 'B') != 1 && ft_strchk(line, "1", 'B') != 1)
 			if ((err = store_info_2(s, line)) != 0)
 				return (err);
-		if ((err = check_map(line, s)) != 0)
+		if (err != -1 && (err = check_map(line, s)) > 0)
 			return (err);
+		if (err == -1)
+			return (check_map_2(line));
 	}
 	if (s->sig_info != INFO_SIG)
 		return (INFO_ERR);

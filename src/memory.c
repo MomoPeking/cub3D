@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../include/cub3D.h"
 
 t_info	*init_info(t_info *s)
 {
@@ -50,8 +50,11 @@ void	free_info(t_info *s)
 	free(s->we);
 	free(s->ea);
 	free(s->s);
-	while (++i < s->map_y)
-		free(s->map[i]);
-	free(s->map);
+	if (s->map != NULL)
+	{
+		while (++i < s->map_y)
+			free(s->map[i]);
+		free(s->map);	
+	}
 	free(s);
 }

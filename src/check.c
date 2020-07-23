@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../include/cub3D.h"
 
 int		count_split(char **str)
 {
@@ -49,7 +49,7 @@ int		check_color(char **color)
 	return (0);
 }
 
-int		check_map_2(t_info *s)
+int		check_map_3(t_info *s)
 {
 	int		i;
 	int		j;
@@ -67,9 +67,43 @@ int		check_map_2(t_info *s)
 			if (c != ' ' && c != '0' && c != '1' && c != '2' &&
 				c != 'N' && c != 'S' && c != 'E' && c != 'W')
 				return (MAP_ERR);
+			if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+				sig++;
+//			if (i == 0 || j == 0 || i == s->map_y - 1 || j == s->map_x - 1)
+//				if (c != '1' || c != ' ')
+//					return (MAP_ERR);
+			if (c == ' ')
+			{
+				if (i - 1 >= 0 && s->map[i - 1][j] != ' ' && s->map[i - 1][j] != '1')
+					return (MAP_ERR);
+				if (i + 1 < s->map_y && s->map[i + 1][j] != ' ' && s->map[i + 1][j] != '1')
+					return (MAP_ERR);	
+				if (j - 1 >= 0 && s->map[i][j - 1] != ' ' && s->map[i][j - 1] != '1')
+					return (MAP_ERR);
+				if (j + 1 < s->map_x && s->map[i][j + 1] != ' ' && s->map[i][j + 1] != '1')
+					return (MAP_ERR);
+				if (i - 1 >= 0 && j - 1 >= 0 && s->map[i - 1][j - 1] != ' ' && s->map[i - 1][j - 1] != '1')
+					return (MAP_ERR);
+				if (i - 1 >= 0 && j + 1 < s->map_x && s->map[i - 1][j + 1] != ' ' && s->map[i - 1][j + 1] != '1')
+					return (MAP_ERR);
+				if (i + 1 < s->map_y && j - 1 >= 0 && s->map[i + 1][j - 1] != ' ' && s->map[i + 1][j - 1] != '1')
+					return (MAP_ERR);
+				if (i + 1 < s->map_y && j + 1 < s->map_x && s->map[i + 1][j + 1] != ' ' && s->map[i + 1][j + 1] != '1')
+					return (MAP_ERR);						
+			}
 		}
 	}
+	if (sig != 1)
+		return (MAP_ERR);
 	return (0);
+}
+
+int		check_map_2(char *line)
+{
+	if (line == NULL)
+		return (0);
+	else
+		return (MAP_ERR);
 }
 
 int		check_map(char *line, t_info *s)
@@ -86,10 +120,10 @@ int		check_map(char *line, t_info *s)
 		s->map_y++;
 		free(line);
 	}
-	if (s->sig_map == 1 && line == NULL)
-		err = MAP_ERR;
 	if (s->sig_map == 1 &&
 		ft_strchk(line, " ", 'B') != 1 && ft_strchk(line, "1", 'B') != 1)
 		err = MAP_ERR;
+	if (s->sig_map == 1 && line == NULL)
+		err = -1;		
 	return (err);
 }

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../include/cub3D.h"
 
 int		main(int ac, char **av)
 {
@@ -29,21 +29,22 @@ int		main(int ac, char **av)
 				return (OPEN_ERR);
 			else
 			{
-				err = store_info(s, fd);
+				err = store_info(s, fd);	
 				if (close(fd) == -1)
 					return (CLOSE_ERR);
-	/*			if (err == 0)
+				if (err == 0)
 				{
 					fd = open(av[1], O_RDONLY);
 					err = store_map(s, fd);
 				}				
-	*/		}
+			}
 		}
 		else
 			err = END_ERR;
 	}
+
 	free_info(s);
-	printf("x: %d, y: %d\n", s->map_x, s->map_y);
+//	printf("x: %d, y: %d\n", s->map_x, s->map_y);
 //	printf("r: %d * %d\n", s->r_x, s->r_y);
 //	printf("r: %d, g: %d, b: %d\n", s->f_r, s->f_g, s->f_b);
 //	printf("r: %d, g: %d, b: %d\n", s->c_r, s->c_g, s->c_b);

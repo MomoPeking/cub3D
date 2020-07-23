@@ -64,7 +64,8 @@ int		count_split(char **str);
 int		check_unsigned_int(char *str);
 int		check_color(char **color);
 int		check_map(char *line, t_info *s);
-int		check_map_2(t_info *s);
+int		check_map_2(char *line);
+int		check_map_3(t_info *s);
 
 t_info	*init_info(t_info *s);
 void	free_split(char **str);

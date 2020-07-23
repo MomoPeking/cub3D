@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../include/cub3D.h"
 /*
 void	ft_mapput(char **map, int width, int length)
 {
@@ -53,6 +53,7 @@ int		store_map(t_info *s, int fd)
 		}
 		free(line);
 	}
-	return (check_map_2(s));
+//	ft_mapput(s->map, s->map_x, s->map_y);
+	return (check_map_3(s));
 //	ft_mapput(s->map, s->map_x, s->map_y);
 }
