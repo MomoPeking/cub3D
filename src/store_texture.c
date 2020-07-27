@@ -6,11 +6,11 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 12:11:17 by qdang             #+#    #+#             */
-/*   Updated: 2020/07/21 23:00:41 by qdang            ###   ########.fr       */
+/*   Updated: 2020/07/23 18:30:53 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "../include/cub3d.h"
 
 int		store_texture_no(t_info *s, char **split)
 {

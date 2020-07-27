@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/17 14:04:06 by qdang             #+#    #+#             */
-/*   Updated: 2020/07/22 11:38:21 by qdang            ###   ########.fr       */
+/*   Created: 2020/07/23 18:41:18 by qdang             #+#    #+#             */
+/*   Updated: 2020/07/23 22:50:36 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,25 +60,25 @@ typedef	struct	s_info
 	char	**map;
 }				t_info;
 
-int		count_split(char **str);
-int		check_unsigned_int(char *str);
-int		check_color(char **color);
-int		check_map(char *line, t_info *s);
-int		check_map_2(char *line);
-int		check_map_3(t_info *s);
+int				count_split(char **str);
+int				check_unsigned_int(char *str);
+int				check_color(char **color);
+int				check_map(char *line, t_info *s);
+int				check_map_2(char *line);
+int				check_map_3(t_info *s);
 
-t_info	*init_info(t_info *s);
-void	free_split(char **str);
-void	free_info(t_info *s);
+void			init_info(t_info *s);
+void			free_split(char **str);
+void			free_info(t_info *s);
 
-void	ft_error(int err);
+void			ft_error(int err);
 
-int		store_texture_no(t_info *s, char **split);
-int		store_texture_so(t_info *s, char **split);
-int		store_texture_we(t_info *s, char **split);
-int		store_texture_ea(t_info *s, char **split);
-int		store_texture_s(t_info *s, char **split);
-int		store_info(t_info *s, int fd);
-int		store_map(t_info *s, int fd);
+int				store_texture_no(t_info *s, char **split);
+int				store_texture_so(t_info *s, char **split);
+int				store_texture_we(t_info *s, char **split);
+int				store_texture_ea(t_info *s, char **split);
+int				store_texture_s(t_info *s, char **split);
+int				store_info(t_info *s, int fd);
+int				store_map(t_info *s, int fd);
 
 #endif

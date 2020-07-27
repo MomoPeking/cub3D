@@ -6,7 +6,7 @@
 #    By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/14 11:38:08 by qdang             #+#    #+#              #
-#    Updated: 2020/07/21 23:01:06 by qdang            ###   ########.fr        #
+#    Updated: 2020/07/26 20:16:20 by qdang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME = cub3D
 
 FLAGS = -Wall -Wextra -Werror
 
-SOURCE = main.c error.c check.c memory.c store_info.c store_texture.c store_map.c
+SOURCE = main.c error.c memory.c check_info.c check_map.c store_info.c \
+			store_map.c store_texture.c 
 
 HED = ./include/cub3d.h
 

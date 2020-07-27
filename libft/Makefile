@@ -6,7 +6,7 @@
 #    By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/24 17:38:51 by qdang             #+#    #+#              #
-#    Updated: 2020/07/21 22:25:41 by qdang            ###   ########.fr        #
+#    Updated: 2020/07/26 20:16:16 by qdang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,10 +16,10 @@ FLAGS = -Wall -Wextra -Werror
 
 HED = libft.h
 
-SRC = ft_memset.c ft_bzero.c ft_memalloc.c\
+SRC = ft_memset.c ft_bzero.c ft_memalloc.c \
 		ft_atoi.c \
 		ft_strnew.c ft_strlen.c ft_strjoin.c ft_strdup.c ft_strchr.c \
-		ft_strsub.c ft_strsplit.c ft_strchk.c ft_strcmp.c\
+		ft_strsub.c ft_strsplit.c ft_strchk.c ft_strcmp.c \
 		ft_putchar_fd.c ft_putchar.c ft_putstr_fd.c ft_putstr.c \
 		get_next_line.c ft_mapnew.c
 

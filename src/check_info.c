@@ -1,59 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memory.c                                           :+:      :+:    :+:   */
+/*   check_info.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/20 11:12:00 by qdang             #+#    #+#             */
-/*   Updated: 2020/07/23 22:04:11 by qdang            ###   ########.fr       */
+/*   Created: 2020/07/19 17:42:45 by qdang             #+#    #+#             */
+/*   Updated: 2020/07/23 22:25:22 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	init_info(t_info *s)
-{
-	s->sig_info = 1;
-	s->no = NULL;
-	s->so = NULL;
-	s->we = NULL;
-	s->ea = NULL;
-	s->s = NULL;
-	s->map = NULL;
-}
-
-void	free_split(char **str)
+int		count_split(char **str)
 {
 	int		i;
 
 	i = 0;
-	if (str != NULL)
-	{
-		while (str[i] != NULL)
-		{
-			free(str[i]);
-			i++;
-		}
-		free(str);
-	}
+	while (str[i] != NULL)
+		i++;
+	return (i);
 }
 
-void	free_info(t_info *s)
+int		check_unsigned_int(char *str)
 {
-	int		i;
-
-	i = -1;
-	free(s->no);
-	free(s->so);
-	free(s->we);
-	free(s->ea);
-	free(s->s);
-	if (s->map != NULL)
+	while (*str)
 	{
-		while (++i < s->map_y)
-			free(s->map[i]);
-		free(s->map);
+		if (*str < '0' || *str > '9')
+			return (0);
+		str++;
 	}
-	free(s);
+	return (1);
+}
+
+int		check_color(char **color)
+{
+	if (count_split(color) != 3)
+	{
+		free_split(color);
+		return (COL_ERR);
+	}
+	if (check_unsigned_int(color[0]) == 0 || check_unsigned_int(color[1]) == 0
+		|| check_unsigned_int(color[2]) == 0)
+	{
+		free_split(color);
+		return (COL_ERR);
+	}
+	return (0);
 }

@@ -6,11 +6,11 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 12:11:22 by qdang             #+#    #+#             */
-/*   Updated: 2020/07/21 23:00:31 by qdang            ###   ########.fr       */
+/*   Updated: 2020/07/26 20:08:27 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "../include/cub3d.h"
 
 static int	store_resolution(t_info *s, char **split)
 {
@@ -101,6 +101,11 @@ static int	store_info_2(t_info *s, char *line)
 	return (err);
 }
 
+/*
+** Read from the file, store the resolution, color and texture info from it.
+** Check the basic info of the map.
+*/
+
 int			store_info(t_info *s, int fd)
 {
 	int		i;
@@ -112,14 +117,14 @@ int			store_info(t_info *s, int fd)
 	{
 		if (i < 0)
 			return (READ_ERR);
-		if (line != NULL &&
+		if (err == -1)
+			return (check_map_2(line));
+		if (line != NULL && s->sig_map != 1 &&
 			ft_strchk(line, " ", 'B') != 1 && ft_strchk(line, "1", 'B') != 1)
 			if ((err = store_info_2(s, line)) != 0)
 				return (err);
 		if (err != -1 && (err = check_map(line, s)) > 0)
 			return (err);
-		if (err == -1)
-			return (check_map_2(line));
 	}
 	if (s->sig_info != INFO_SIG)
 		return (INFO_ERR);
