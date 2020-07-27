@@ -6,70 +6,35 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 12:11:22 by qdang             #+#    #+#             */
-/*   Updated: 2020/07/26 20:08:27 by qdang            ###   ########.fr       */
+/*   Updated: 2020/07/27 09:50:48 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-static int	store_resolution(t_info *s, char **split)
+static int	store_map(t_info *s, int fd)
 {
-	if (count_split(split) != 3)
-		return (RES_ERR);
-	if (check_unsigned_int(split[1]) == 0 || check_unsigned_int(split[2]) == 0)
-		return (RES_ERR);
-	s->r_x = ft_atoi(split[1]);
-	s->r_y = ft_atoi(split[2]);
-	if (s->r_x == 0 || s->r_y == 0)
-		return (RES_ERR);
-	s->sig_info *= R_SIG;
-	return (0);
-}
+	char	*line;
+	int		i;
+	int		j;
 
-static int	store_color_floor(t_info *s, char **split)
-{
-	char	**color;
-
-	if (count_split(split) != 2 || (ft_strchk(split[1], ",", 'E') == 1))
-		return (COL_ERR);
-	color = ft_strsplit(split[1], ',');
-	if (check_color(color) == COL_ERR)
-		return (COL_ERR);
-	s->f_r = ft_atoi(color[0]);
-	s->f_g = ft_atoi(color[1]);
-	s->f_b = ft_atoi(color[2]);
-	if (s->f_r > 255 || s->f_r < 0 || s->f_g > 255 ||
-		s->f_g < 0 || s->f_b > 255 || s->f_b < 0)
+	i = 0;
+	s->map = ft_mapnew(s->map_x, s->map_y);
+	while (get_next_line(fd, &line) != 0)
 	{
-		free_split(color);
-		return (COL_ERR);
+		if (ft_strchk(line, " ", 'B') == 1 || ft_strchk(line, "1", 'B') == 1)
+		{
+			j = 0;
+			while (line[j])
+			{
+				s->map[i][j] = line[j];
+				j++;
+			}
+			i++;
+		}
+		free(line);
 	}
-	free_split(color);
-	s->sig_info *= F_SIG;
-	return (0);
-}
-
-static int	store_color_ceiling(t_info *s, char **split)
-{
-	char	**color;
-
-	if (count_split(split) != 2 || (ft_strchk(split[1], ",", 'E') == 1))
-		return (COL_ERR);
-	color = ft_strsplit(split[1], ',');
-	if (check_color(color) == COL_ERR)
-		return (COL_ERR);
-	s->c_r = ft_atoi(color[0]);
-	s->c_g = ft_atoi(color[1]);
-	s->c_b = ft_atoi(color[2]);
-	if (s->c_r > 255 || s->c_r < 0 || s->c_g > 255 ||
-		s->c_g < 0 || s->c_b > 255 || s->c_b < 0)
-	{
-		free_split(color);
-		return (COL_ERR);
-	}
-	free_split(color);
-	s->sig_info *= C_SIG;
-	return (0);
+	return (check_map_3(s));
 }
 
 static int	store_info_2(t_info *s, char *line)
@@ -101,12 +66,7 @@ static int	store_info_2(t_info *s, char *line)
 	return (err);
 }
 
-/*
-** Read from the file, store the resolution, color and texture info from it.
-** Check the basic info of the map.
-*/
-
-int			store_info(t_info *s, int fd)
+static int	store_info(t_info *s, int fd)
 {
 	int		i;
 	int		err;
@@ -128,5 +88,31 @@ int			store_info(t_info *s, int fd)
 	}
 	if (s->sig_info != INFO_SIG)
 		return (INFO_ERR);
+	return (err);
+}
+
+int			read_and_store(char	*file, t_info *s)
+{
+	int		err;
+	int		fd;
+
+	if (ft_strchk(file, ".cub", 'E') == 1)
+	{
+		if ((fd = open(file, O_RDONLY)) == -1)
+			err = OPEN_ERR;
+		else
+		{
+			err = store_info(s, fd);
+			close(fd) == -1 ? err = CLOSE_ERR : 0;
+			if (err == 0)
+			{
+				fd = open(file, O_RDONLY);
+				err = store_map(s, fd);
+				err == 0 && close(fd) == -1 ? err = CLOSE_ERR : 0;
+			}
+		}
+	}
+	else
+		err = END_ERR;
 	return (err);
 }
