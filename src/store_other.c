@@ -71,3 +71,11 @@ int		store_color_ceiling(t_info *s, char **split)
 	s->sig_info *= C_SIG;
 	return (0);
 }
+
+int		store_start(t_info *s, int i, int j)
+{
+	s->start_x = j;
+	s->start_y = i;
+	s->start = s->map[i][j];
+	return (1);
+}

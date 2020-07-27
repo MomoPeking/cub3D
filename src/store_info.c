@@ -77,21 +77,21 @@ static int	store_info(t_info *s, int fd)
 	{
 		if (i < 0)
 			return (READ_ERR);
-		if (err == -1)
-			return (check_map_2(line));
-		if (line != NULL && s->sig_map != 1 &&
+		if (err == -1 && (err = check_map_2(line)) != 0)
+			return (err);
+		if (line != NULL && s->sig_map != '1' &&
 			ft_strchk(line, " ", 'B') != 1 && ft_strchk(line, "1", 'B') != 1)
 			if ((err = store_info_2(s, line)) != 0)
 				return (err);
 		if (err != -1 && (err = check_map(line, s)) > 0)
 			return (err);
 	}
-	if (s->sig_info != INFO_SIG)
-		return (INFO_ERR);
+	s->sig_info != INFO_SIG ? err = INFO_ERR : 0;
+	s->map_x <= 0 || s->map_y <= 0 ? err = MAP_ERR : 0;
 	return (err);
 }
 
-int			read_and_store(char	*file, t_info *s)
+int			read_and_store(char *file, t_info *s)
 {
 	int		err;
 	int		fd;
@@ -104,7 +104,7 @@ int			read_and_store(char	*file, t_info *s)
 		{
 			err = store_info(s, fd);
 			close(fd) == -1 ? err = CLOSE_ERR : 0;
-			if (err == 0)
+			if (err == 0 || err == -1)
 			{
 				fd = open(file, O_RDONLY);
 				err = store_map(s, fd);

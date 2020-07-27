@@ -18,7 +18,7 @@ int		close_scene(t_info *s)
 	exit(0);
 }
 
-int 	press_key(int key, t_info *s)
+int		press_key(int key, t_info *s)
 {
 	key == ESC ? close_scene(s) : 0;
 	return (0);

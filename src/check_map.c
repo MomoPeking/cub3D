@@ -81,7 +81,7 @@ int			check_map_3(t_info *s)
 			{
 				c = s->map[i][j];
 				if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
-					sig++;
+					sig += store_start(s, i, j);
 				if (check_map_4(s, i, j, c) != 0)
 					return (MAP_ERR);
 			}
@@ -120,16 +120,16 @@ int			check_map(char *line, t_info *s)
 	err = 0;
 	if (ft_strchk(line, " ", 'B') == 1 || ft_strchk(line, "1", 'B') == 1)
 	{
-		s->sig_map = 1;
+		s->sig_map = '1';
 		temp = ft_strlen(line);
 		temp > s->map_x ? s->map_x = temp : 0;
 		s->map_y++;
 		free(line);
 	}
-	if (s->sig_map == 1 &&
+	if (s->sig_map == '1' &&
 		ft_strchk(line, " ", 'B') != 1 && ft_strchk(line, "1", 'B') != 1)
 		err = MAP_ERR;
-	if (s->sig_map == 1 && line == NULL)
+	if (s->sig_map == '1' && line == NULL)
 		err = -1;
 	return (err);
 }

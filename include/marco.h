@@ -33,6 +33,10 @@
 # define C_SIG		19
 # define INFO_SIG	9699690
 
+# define UL         10
+
 # define ESC		53
+
+# define RED	    0XFF0000
 
 #endif

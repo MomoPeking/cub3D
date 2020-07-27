@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+         #
+#    By: qdang <qdang@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/14 11:38:08 by qdang             #+#    #+#              #
-#    Updated: 2020/07/27 09:45:40 by qdang            ###   ########.fr        #
+#    Updated: 2020/07/27 15:31:52 by qdang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME = cub3D
 
 FLAGS = -Wall -Wextra -Werror
 
-SOURCE = main.c error.c memory.c interaction.c check_info.c check_map.c \
+SOURCE = main.c error.c memory.c interaction.c draw.c \
+			check_info.c check_map.c \
 			store_info.c store_texture.c store_other.c \
 
 LIB_PATH = ./libft

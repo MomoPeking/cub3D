@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
+/*   By: qdang <qdang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 18:41:18 by qdang             #+#    #+#             */
-/*   Updated: 2020/07/27 09:49:15 by qdang            ###   ########.fr       */
+/*   Updated: 2020/07/27 15:32:25 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 # include "./structure.h"
 # include <fcntl.h>
 # include <stdio.h> // 記得刪除
-
-
 
 int		count_split(char **str);
 int		check_unsigned_int(char *str);
@@ -44,8 +42,11 @@ int		store_texture_ea(t_info *s, char **split);
 int		store_texture_s(t_info *s, char **split);
 int		store_color_floor(t_info *s, char **split);
 int		store_color_ceiling(t_info *s, char **split);
+int		store_start(t_info *s, int i, int j);
 
 int 	press_key(int key, t_info *s);
 int		close_scene(t_info *s);
+
+void    draw_2dmap(t_info *s);
 
 #endif

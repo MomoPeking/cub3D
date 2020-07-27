@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
+/*   By: qdang <qdang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 16:36:44 by qdang             #+#    #+#             */
-/*   Updated: 2020/07/27 09:48:05 by qdang            ###   ########.fr       */
+/*   Updated: 2020/07/27 15:33:58 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,22 +41,23 @@ static void	ft_show(t_info *s)
 	printf("S: %s\n", s->s);
 	printf("Floor Color: R: %d, G: %d, B: %d\n", s->f_r, s->f_g, s->f_b);
 	printf("Ceiling Color: R: %d, G: %d, B: %d\n", s->c_r, s->c_g, s->c_b);
-	printf("Map: x: %d, y: %d", s->map_x, s->map_y);
-	printf("\n\n");
+	printf("Map: x: %d, y: %d\n", s->map_x, s->map_y);
+	printf("Start: %c, x: %d, y: %d\n", s->start, s->start_x, s->start_y);
 	ft_mapput(s->map, s->map_x, s->map_y);	
 }
 */
 
 static void	create_scene(t_info *s)
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
+	s->mlx_ptr = mlx_init();
+	s->win_ptr = mlx_new_window(s->mlx_ptr, s->r_x, s->r_y, "cub3D");
 
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, s->r_x, s->r_y, "cub3D");
-	mlx_hook(win_ptr, 2, 0, press_key, s);	
-	mlx_hook(win_ptr, 17, 0, close_scene, s);
-	mlx_loop(mlx_ptr);
+//	mlx_string_put(mlx_ptr, win_ptr, 10, 10, RED, "AMBER");
+//	mlx_pixel_put(mlx_ptr, win_ptr, 50, 50, RED);
+	draw_2dmap(s);
+	mlx_hook(s->win_ptr, 2, 0, press_key, s);	
+	mlx_hook(s->win_ptr, 17, 0, close_scene, s);
+	mlx_loop(s->mlx_ptr);
 }
 
 int			main(int ac, char **av)
@@ -75,7 +76,8 @@ int			main(int ac, char **av)
 //		system("leaks cub3D");
 		ft_error(err);		
 	}
-	create_scene(s);	
 //	ft_show(s);
+//	system("leaks cub3D");
+	create_scene(s);
 	return (0);
 }

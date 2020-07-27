@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   memory.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
+/*   By: qdang <qdang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 11:12:00 by qdang             #+#    #+#             */
-/*   Updated: 2020/07/23 22:04:11 by qdang            ###   ########.fr       */
+/*   Updated: 2020/07/27 15:17:52 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,15 @@
 void	init_info(t_info *s)
 {
 	s->sig_info = 1;
+	s->ul = UL;
 	s->no = NULL;
 	s->so = NULL;
 	s->we = NULL;
 	s->ea = NULL;
 	s->s = NULL;
 	s->map = NULL;
+	s->mlx_ptr = NULL;
+	s->win_ptr = NULL;
 }
 
 void	free_split(char **str)
