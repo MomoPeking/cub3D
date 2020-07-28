@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   marco.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
+/*   By: qdang <qdang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 08:49:12 by qdang             #+#    #+#             */
-/*   Updated: 2020/07/27 08:50:24 by qdang            ###   ########.fr       */
+/*   Updated: 2020/07/27 18:15:47 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,12 @@
 # define C_SIG		19
 # define INFO_SIG	9699690
 
-# define UL         10
+# define UL         20
 
 # define ESC		53
 
 # define RED	    0XFF0000
+# define WHITE      0XFFFFFF
+# define YELLOW     0XFFFF00
 
 #endif

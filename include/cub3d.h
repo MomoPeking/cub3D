@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 18:41:18 by qdang             #+#    #+#             */
-/*   Updated: 2020/07/27 15:32:25 by qdang            ###   ########.fr       */
+/*   Updated: 2020/07/27 18:19:06 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "./marco.h"
 # include "./structure.h"
 # include <fcntl.h>
+# include <math.h>
 # include <stdio.h> // 記得刪除
 
 int		count_split(char **str);
