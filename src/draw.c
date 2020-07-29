@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qdang <qdang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 14:53:54 by qdang             #+#    #+#             */
-/*   Updated: 2020/07/27 18:36:40 by qdang            ###   ########.fr       */
+/*   Updated: 2020/07/28 22:25:38 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void    draw_2dblock(t_info *s, int x, int y, int color)
+void    draw_2d_block(t_info *s, int x, int y, int color)
 {
     int     i;
     int     j;
@@ -30,25 +30,29 @@ void    draw_2dblock(t_info *s, int x, int y, int color)
 ** (x, y) on the screen is in the reversed order of (x, y) stored in the map.
 */
 
-void    draw_2dmap(t_info *s)
+void    draw_2d_map(t_info *s)
 {
     int     i;
     int     j;
 
-    int     begin_x = 40;
-    int     begin_y = 40;
-
+	mlx_clear_window(s->mlx_ptr, s->win_ptr);
     i = -1;
-//    mlx_pixel_put(s->mlx_ptr, s->win_ptr, begin_y + (s->start_y + 0.5) * s->ul, begin_x + (s->start_x + 0.5) * s->ul, RED); 
     while (++i < s->map_y)
     {
         j = -1;
         while (++j < s->map_x)
         {
             if (s->map[i][j] == '1')
-                draw_2dblock(s, begin_y + j * s->ul, begin_x + i * s->ul, WHITE);
+                draw_2d_block(s, BEGIN_X + j * s->ul, BEGIN_Y + i * s->ul, WHITE);
             if (s->map[i][j] == '2')
-                draw_2dblock(s, begin_y + j * s->ul, begin_x + i * s->ul, YELLOW);
+                draw_2d_block(s, BEGIN_X + j * s->ul, BEGIN_Y + i * s->ul, YELLOW);
         }
     }
+	s->stand_x = BEGIN_X + (s->start_x + s->move_x + 0.5) * s->ul;
+	s->stand_y = BEGIN_Y + (s->start_y + s->move_y + 0.5) * s->ul;
+	mlx_pixel_put(s->mlx_ptr, s->win_ptr, s->stand_x, s->stand_y, RED);
+	
+	i = -1;
+	while (++i <= 50)
+		draw_line(s, 250, 200 + i, RED);
 }

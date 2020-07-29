@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 14:12:16 by qdang             #+#    #+#             */
-/*   Updated: 2020/07/21 22:25:14 by qdang            ###   ########.fr       */
+/*   Updated: 2020/07/28 21:41:49 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ void	*ft_memalloc(size_t size);
 ** Number
 */
 
+int		ft_abs(int i);
 int		ft_atoi(const char *str);
+int		ft_min(int x, int y);
 
 /*
 ** String

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qdang <qdang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 16:36:44 by qdang             #+#    #+#             */
-/*   Updated: 2020/07/27 18:34:50 by qdang            ###   ########.fr       */
+/*   Updated: 2020/07/28 20:10:49 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,10 @@ static void	create_scene(t_info *s)
 {
 	s->mlx_ptr = mlx_init();
 	s->win_ptr = mlx_new_window(s->mlx_ptr, s->r_x, s->r_y, "cub3D");
-
 //	mlx_string_put(mlx_ptr, win_ptr, 10, 10, RED, "AMBER");
 //	mlx_pixel_put(mlx_ptr, win_ptr, 50, 50, RED);
-	draw_2dmap(s);
-	mlx_hook(s->win_ptr, 2, 0, press_key, s);	
+	draw_2d_map(s);
+	mlx_hook(s->win_ptr, 2, 0, press_key, s);
 	mlx_hook(s->win_ptr, 17, 0, close_scene, s);
 	mlx_loop(s->mlx_ptr);
 }
@@ -73,12 +72,11 @@ int			main(int ac, char **av)
 	if (err != 0)
 	{
 		free_info(s);
-//		system("leaks cub3D");
 		ft_error(err);		
 	}
+//	printf("%d, %d\n", (int)fabs(-1.23), (int)fabs(4.23));
 //	ft_show(s);
 //	system("leaks cub3D");
-	printf("Start: %c, x: %d, y: %d\n", s->start, s->start_x, s->start_y);
 	create_scene(s);
 	return (0);
 }

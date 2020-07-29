@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qdang <qdang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 18:41:18 by qdang             #+#    #+#             */
-/*   Updated: 2020/07/27 18:19:06 by qdang            ###   ########.fr       */
+/*   Updated: 2020/07/28 21:55:49 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 int		count_split(char **str);
 int		check_unsigned_int(char *str);
 int		check_color(char **color);
+int		check_stand(t_info *s, int x, int y);
 int		check_map(char *line, t_info *s);
 int		check_map_2(char *line);
 int		check_map_3(t_info *s);
@@ -48,6 +49,7 @@ int		store_start(t_info *s, int i, int j);
 int 	press_key(int key, t_info *s);
 int		close_scene(t_info *s);
 
-void    draw_2dmap(t_info *s);
+void    draw_2d_map(t_info *s);
+void	draw_line(t_info *s, int x, int y, int color);
 
 #endif

@@ -3,19 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   structure.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qdang <qdang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 08:51:15 by qdang             #+#    #+#             */
-/*   Updated: 2020/07/27 15:17:17 by qdang            ###   ########.fr       */
+/*   Updated: 2020/07/28 19:43:57 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRCUTURE_H
 # define STRCUTURE_H
 
-/*
-** Start x/y are the coordinates of startpoint N/E/W/S, start from 0.
-** Map x/y are the width and length of the map in rectangular, start from 1.
+/* 
+** map_x/y are the width and length of the map in rectangular, start from 1.
+** start_x/y are the coordinates of startpoint N/E/W/S in grids, start from 0.
+** move_x/y are the coordinates in grids how the player moved from the startpoint.
+** stand_x/y are the coordinates where the player stands.
+** ul is the unit length of each grid.
 */
 
 typedef	struct	s_info
@@ -41,6 +44,10 @@ typedef	struct	s_info
 	int		start_x;
 	int		start_y;
 	char	start;
+	int		move_x;
+	int		move_y;
+	int		stand_x;
+	int		stand_y;
 	int		ul;
 	void	*mlx_ptr;
 	void	*win_ptr;

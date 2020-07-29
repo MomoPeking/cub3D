@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: qdang <qdang@student.42.fr>                +#+  +:+       +#+         #
+#    By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/14 11:38:08 by qdang             #+#    #+#              #
-#    Updated: 2020/07/27 15:31:52 by qdang            ###   ########.fr        #
+#    Updated: 2020/07/28 21:59:13 by qdang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME = cub3D
 
 FLAGS = -Wall -Wextra -Werror
 
-SOURCE = main.c error.c memory.c interaction.c draw.c \
+SOURCE = main.c error.c memory.c interaction.c \
+			draw.c draw_line.c \
 			check_info.c check_map.c \
 			store_info.c store_texture.c store_other.c \
 
