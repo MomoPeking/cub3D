@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structure.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
+/*   By: qdang <qdang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 08:51:15 by qdang             #+#    #+#             */
-/*   Updated: 2020/07/29 08:38:37 by qdang            ###   ########.fr       */
+/*   Updated: 2020/07/29 15:57:43 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 ** move_x/y are the coordinates in grids how the player moved from the startpoint.
 ** stand_x/y are the coordinates where the player stands.
 ** its_x/y are the coordinates where a sight intersect with a wall or an object.
-** ul is the unit length of each grid.
 */
 
 typedef	struct	s_info
@@ -51,9 +50,14 @@ typedef	struct	s_info
 	int		stand_y;
 	int		its_x;
 	int		its_y;
-	int		ul;
 	void	*mlx_ptr;
 	void	*win_ptr;
 }				t_info;
+
+typedef	struct	s_point
+{
+	int		x;
+	int		y;
+}				t_point;	
 
 #endif
