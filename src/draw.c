@@ -3,14 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qdang <qdang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 14:53:54 by qdang             #+#    #+#             */
-/*   Updated: 2020/07/29 16:36:55 by qdang            ###   ########.fr       */
+/*   Updated: 2020/08/03 12:21:33 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+/*
+** The block include the upper and left edges but not the lower and right edges.
+*/
 
 void    draw_2d_block(t_info *s, int x, int y, int color)
 {
@@ -28,45 +32,98 @@ void    draw_2d_block(t_info *s, int x, int y, int color)
 
 /*
 ** Use stand_x/y and the radian to calculate the its_x/y.
+** The sight touch the lower and right edges but not the upper and the left.
 */
 
 void	intersect(t_info *s, double radian)
 {
     int     i;
-    t_point up;
-    t_point down;
-    t_point left;
-    t_point right;
+	int		j;
+	char	c;
+	int		grid_x;
+	int		grid_y;
+	
+	i = 0;
+	j = 0;
+	grid_x = s->start_y + s->move_y;
+	grid_y = s->start_x + s->move_x;
 
-    i = 1;
-    up.x = s->start_y + s->move_y - i;
-    up.y = s->start_x + s->move_x;
-    down.x = s->start_y + s->move_y + i;
-    down.y = s->start_x + s->move_x;
-    left.x = s->start_y + s->move_y;
-    left.y = s->start_x + s->move_x - i;    
-    right.x = s->start_y + s->move_y;
-    right.y = s->start_x + s->move_x + i;
-    
-    if (radian > 0 && radian < M_PI_2)
+	if (radian == 0)
+	{
+		c = s->map[grid_x - 1][grid_y];
+		while (c == '0' || c == s->start)
+		{
+			i++;
+			c = s->map[grid_x - 1 - i][grid_y];
+		}
+		s->its_x = s->stand_x;
+		s->its_y = s->stand_y - (int)((0.5 + i) * UL);
+	}
+	
+	if (radian > 0 && radian < M_PI_2)
     {
-        printf("up: %c\n", s->map[up.x][up.y]);
-        printf("right: %c\n", s->map[right.x][right.y]);
-    /*    
-        if (s->map[up.x][up.y] == '0' && s->map[right.x][right.y] == '0')
-        {
-            i++;
-            printf("i: %d\n", i);     
-        }
-    */
-/*
-        if (s->map[up.x][up.y] != '0')
-            printf("UP: %d, %d\n", up.x, up.y);
-        if (s->map[right.x][right.y] != '0')
-            printf("Right: %d, %d\n", right.x, right.y);    
-*/
-    }
-//	tan(radian);
+		c = s->map[grid_x - 1][grid_y + (int)(0.5 + 0.5 * tan(radian))];
+		while (c == '0' || c == s->start)
+		{
+			i++;
+			c = s->map[grid_x - 1 - i][grid_y + (int)(0.5 + (0.5 + i) * tan(radian))];
+		}
+		c = s->map[grid_x - (int)(0.5 + 0.5 / tan(radian))][grid_y + 1];
+		while (c == '0' || c == s->start)
+		{
+			j++;
+			c = s->map[grid_x - (int)(0.5 + (0.5 + j) / tan(radian))][grid_y + 1 + j];
+		}
+		if ((int)((0.5 + i) * UL) <= (int)((0.5 + j) * UL / tan(radian)))
+		{
+			s->its_x = s->stand_x + (int)((0.5 + i) * UL * tan(radian));
+			s->its_y = s->stand_y - (int)((0.5 + i) * UL);
+		}
+		else
+		{
+			s->its_x = s->stand_x + (int)((0.5 + j) * UL - 1);		
+			s->its_y = s->stand_y - (int)((0.5 + j) * UL / tan(radian));
+		}
+	}
+
+	if (radian == M_PI_2)
+	{
+		c = s->map[grid_x][grid_y + 1];
+		while (c == '0' || c == s->start)
+		{
+			i++;
+			c = s->map[grid_x][grid_y + 1 + i];
+		}
+		s->its_x = s->stand_x + (int)((0.5 + i) * UL - 1);
+		s->its_y = s->stand_y;	
+	}
+/*	
+	if (radian > M_PI_2 && radian < M_PI)
+	{
+		c = s->map[grid_x + (int)(0.5 - 0.5 / tan(radian))][grid_y + 1];
+		while (c == '0' || c == s->start)
+		{
+			i++;
+			c = s->map[grid_x + (int)(0.5 - (0.5 + i) / tan(radian))][grid_y + 1 + i];
+		}
+		c = s->map[grid_x + 1][grid_y + (int)(0.5 - 0.5 * tan(radian))];
+		while (c == '0' || c == s->start)
+		{
+			j++;
+			c = s->map[grid_x + 1 + j][grid_y + (int)(0.5 - (0.5 + j) * tan(radian))];
+		}
+		
+		if ((int)((0.5 + i) * UL) <= (int)((0.5 + j) * UL / tan(radian)))
+		{
+			s->its_x = s->stand_x + (int)((0.5 + i) * UL * tan(radian));
+			s->its_y = s->stand_y - (int)((0.5 + i) * UL);
+		}
+		else
+		{
+			s->its_x = s->stand_x + (int)((0.5 + j) * UL - 1);		
+			s->its_y = s->stand_y - (int)((0.5 + j) * UL / tan(radian));
+		}
+*/		
 }
 
 /*
@@ -97,5 +154,16 @@ void    draw_2d_map(t_info *s)
 	i = -1;
 //	while (++i <= 50)
 //		draw_line(s, 250, 200 + i, RED);
-    intersect(s, M_PI_4);
+	
+	intersect(s, 1);
+	draw_line(s, s->its_x, s->its_y, RED);
+
+/*
+	i = -1;
+	while (++i <= 20)
+	{
+		intersect(s, (double)(0.05 * i));
+		draw_line(s, s->its_x, s->its_y, RED);
+	}
+*/
 }

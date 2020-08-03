@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structure.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qdang <qdang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 08:51:15 by qdang             #+#    #+#             */
-/*   Updated: 2020/07/29 15:57:43 by qdang            ###   ########.fr       */
+/*   Updated: 2020/08/01 17:03:09 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define STRCUTURE_H
 
 /* 
-** map_x/y are the width and length of the map in rectangular, start from 1.
-** start_x/y are the coordinates of startpoint N/E/W/S in grids, start from 0.
-** move_x/y are the coordinates in grids how the player moved from the startpoint.
+** map_x/y in grids are the width and length of the map in rectangular, start from 1.
+** start_x/y in grids are the coordinates of startpoint N/E/W/S, start from 0.
+** move_x/y in grids are the coordinates how the player moved from the startpoint.
 ** stand_x/y are the coordinates where the player stands.
 ** its_x/y are the coordinates where a sight intersect with a wall or an object.
 */
