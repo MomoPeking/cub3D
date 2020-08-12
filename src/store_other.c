@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   store_other.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
+/*   By: qdang <qdang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/21 21:38:23 by qdang             #+#    #+#             */
-/*   Updated: 2020/08/04 16:35:47 by qdang            ###   ########.fr       */
+/*   Updated: 2020/08/12 13:55:59 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ int		store_start(t_info *s, int i, int j)
 	s->start_y = i;
 	s->start = s->map[i][j];
 	s->start == 'N' ? s->start_sight = (0 - (M_PI / 180 * FOV) / 2) : 0;
-	s->start == 'W' ? s->start_sight = M_PI_2 - (M_PI / 180 * FOV) / 2 : 0;
+	s->start == 'E' ? s->start_sight = M_PI_2 - (M_PI / 180 * FOV) / 2 : 0;
 	s->start == 'S' ? s->start_sight = M_PI - (M_PI / 180 * FOV) / 2 : 0;
-	s->start == 'E' ? s->start_sight = M_PI_2 * 3 - (M_PI / 180 * FOV) / 2 : 0;
+	s->start == 'W' ? s->start_sight = M_PI_2 * 3 - (M_PI / 180 * FOV) / 2 : 0;
 	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
+/*   By: qdang <qdang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 14:53:54 by qdang             #+#    #+#             */
-/*   Updated: 2020/08/04 16:38:52 by qdang            ###   ########.fr       */
+/*   Updated: 2020/08/12 14:58:18 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,18 @@ void    draw_2d_map(t_info *s)
 	s->grid_x = s->start_x + s->move_x;
 	s->grid_y = s->start_y + s->move_y;
 
+	calc_its(s, s->start_sight);
+	draw_line(s, s->its_x, s->its_y, LIME);
+
+/*
 	i = -1;
 	while (++i <= PREC)
 	{
 		calc_its(s, (double)(s->start_sight + i * (M_PI / 180 * FOV) / PREC));
-		draw_line(s, s->its_x, s->its_y, RED);
+		draw_line(s, s->its_x, s->its_y, LIME);
 	}
-
-    i = -1;
+*/
+	i = -1;
     while (++i < s->map_y)
     {
         j = -1;

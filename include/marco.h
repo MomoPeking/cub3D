@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   marco.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
+/*   By: qdang <qdang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 08:49:12 by qdang             #+#    #+#             */
-/*   Updated: 2020/08/04 16:37:33 by qdang            ###   ########.fr       */
+/*   Updated: 2020/08/12 14:58:48 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,9 @@
 # define INFO_SIG	9699690
 
 # define UL         20
-# define FOV		120
-# define TURN		45
+# define FOV		60
+# define TURN		30
+# define REDUND     10e-5
 # define PREC		2000
 # define BEGIN_X	40
 # define BEGIN_Y	40
@@ -51,5 +52,6 @@
 # define RED	    0XFF0000
 # define WHITE      0XFFFFFF
 # define YELLOW     0XFFFF00
+# define LIME       0X00FF00
 
 #endif

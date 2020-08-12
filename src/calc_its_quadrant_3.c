@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calc_its_quadrant_3.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
+/*   By: qdang <qdang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 10:43:10 by qdang             #+#    #+#             */
-/*   Updated: 2020/08/04 11:54:20 by qdang            ###   ########.fr       */
+/*   Updated: 2020/08/12 14:25:21 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void		calc_its_quadrant_3(t_info *s, double radian)
 	int		i;
 	int		j;
 
-	if (radian == M_PI)
+	if (radian >= M_PI - REDUND && radian <= M_PI + REDUND)
 		calc_its_quadrant_3_0(s);
 	else
 	{
