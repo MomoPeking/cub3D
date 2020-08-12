@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 16:36:44 by qdang             #+#    #+#             */
-/*   Updated: 2020/07/28 20:10:49 by qdang            ###   ########.fr       */
+/*   Updated: 2020/08/04 16:27:47 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ int			main(int ac, char **av)
 		free_info(s);
 		ft_error(err);		
 	}
-//	printf("%d, %d\n", (int)fabs(-1.23), (int)fabs(4.23));
 //	ft_show(s);
 //	system("leaks cub3D");
 	create_scene(s);

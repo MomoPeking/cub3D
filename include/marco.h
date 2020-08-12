@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 08:49:12 by qdang             #+#    #+#             */
-/*   Updated: 2020/07/28 19:25:58 by qdang            ###   ########.fr       */
+/*   Updated: 2020/08/04 16:37:33 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@
 # define INFO_SIG	9699690
 
 # define UL         20
-# define FOV		135
+# define FOV		120
+# define TURN		45
+# define PREC		2000
 # define BEGIN_X	40
 # define BEGIN_Y	40
 
@@ -43,6 +45,8 @@
 # define A			0
 # define S			1
 # define D			2
+# define LEFT		123
+# define RIGHT		124
 
 # define RED	    0XFF0000
 # define WHITE      0XFFFFFF

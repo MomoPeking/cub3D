@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 14:12:16 by qdang             #+#    #+#             */
-/*   Updated: 2020/07/28 21:41:49 by qdang            ###   ########.fr       */
+/*   Updated: 2020/08/04 16:21:05 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	ft_putstr(char const *c);
 ** Other
 */
 
-char	**ft_mapnew(int width, int length);
+char	**ft_mapnew(int width, int length, char c);
 int		get_next_line(const int fd, char **line);
 
 #endif
