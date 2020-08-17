@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 21:53:09 by qdang             #+#    #+#             */
-/*   Updated: 2020/07/28 22:02:39 by qdang            ###   ########.fr       */
+/*   Updated: 2020/08/16 17:50:49 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void		draw_line(t_info *s, int x, int y, int color)
 	else if (abs_y == 0)
 		while (++i <= abs_x)
 			mlx_pixel_put(s->mlx_ptr, s->win_ptr,
-				ft_min(x, s->stand_x) + i, y, color);			
+				ft_min(x, s->stand_x) + i, y, color);
 	else
 		abs_y <= abs_x ?
 			draw_line_x(s, x, y, color) : draw_line_y(s, x, y, color);

@@ -6,11 +6,12 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 16:36:44 by qdang             #+#    #+#             */
-/*   Updated: 2020/08/04 16:27:47 by qdang            ###   ########.fr       */
+/*   Updated: 2020/08/16 18:02:12 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
 /*
 static void	ft_mapput(char **map, int width, int length)
 {
@@ -43,7 +44,7 @@ static void	ft_show(t_info *s)
 	printf("Ceiling Color: R: %d, G: %d, B: %d\n", s->c_r, s->c_g, s->c_b);
 	printf("Map: x: %d, y: %d\n", s->map_x, s->map_y);
 	printf("Start: %c, x: %d, y: %d\n", s->start, s->start_x, s->start_y);
-	ft_mapput(s->map, s->map_x, s->map_y);	
+	ft_mapput(s->map, s->map_x, s->map_y);
 }
 */
 
@@ -72,7 +73,7 @@ int			main(int ac, char **av)
 	if (err != 0)
 	{
 		free_info(s);
-		ft_error(err);		
+		ft_error(err);
 	}
 //	ft_show(s);
 //	system("leaks cub3D");

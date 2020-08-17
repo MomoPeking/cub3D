@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   marco.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qdang <qdang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 08:49:12 by qdang             #+#    #+#             */
-/*   Updated: 2020/08/12 14:58:48 by qdang            ###   ########.fr       */
+/*   Updated: 2020/08/16 18:05:24 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 # define FOV		60
 # define TURN		30
 # define REDUND     10e-5
-# define PREC		2000
+# define PREC		1000
 # define BEGIN_X	40
 # define BEGIN_Y	40
 
