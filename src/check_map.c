@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 22:23:41 by qdang             #+#    #+#             */
-/*   Updated: 2020/08/04 16:16:45 by qdang            ###   ########.fr       */
+/*   Updated: 2020/08/18 22:31:49 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,22 @@ static int	check_map_5(t_info *s, int i, int j)
 {
 	if (i - 1 >= 0 && s->map[i - 1][j] != ' ' && s->map[i - 1][j] != '1')
 		return (MAP_ERR);
-	if (i + 1 < s->map_y && s->map[i + 1][j] != ' ' && s->map[i + 1][j] != '1')
+	if (i + 1 < s->ms.y && s->map[i + 1][j] != ' ' && s->map[i + 1][j] != '1')
 		return (MAP_ERR);
 	if (j - 1 >= 0 && s->map[i][j - 1] != ' ' && s->map[i][j - 1] != '1')
 		return (MAP_ERR);
-	if (j + 1 < s->map_x && s->map[i][j + 1] != ' ' && s->map[i][j + 1] != '1')
+	if (j + 1 < s->ms.x && s->map[i][j + 1] != ' ' && s->map[i][j + 1] != '1')
 		return (MAP_ERR);
 	if (i - 1 >= 0 && j - 1 >= 0 &&
 		s->map[i - 1][j - 1] != ' ' && s->map[i - 1][j - 1] != '1')
 		return (MAP_ERR);
-	if (i - 1 >= 0 && j + 1 < s->map_x &&
+	if (i - 1 >= 0 && j + 1 < s->ms.x &&
 		s->map[i - 1][j + 1] != ' ' && s->map[i - 1][j + 1] != '1')
 		return (MAP_ERR);
-	if (i + 1 < s->map_y && j - 1 >= 0 &&
+	if (i + 1 < s->ms.y && j - 1 >= 0 &&
 		s->map[i + 1][j - 1] != ' ' && s->map[i + 1][j - 1] != '1')
 		return (MAP_ERR);
-	if (i + 1 < s->map_y && j + 1 < s->map_x &&
+	if (i + 1 < s->ms.y && j + 1 < s->ms.x &&
 		s->map[i + 1][j + 1] != ' ' && s->map[i + 1][j + 1] != '1')
 		return (MAP_ERR);
 	return (0);
@@ -51,7 +51,7 @@ static int	check_map_4(t_info *s, int i, int j, char c)
 	if (c != ' ' && c != '0' && c != '1' && c != '2' &&
 		c != 'N' && c != 'S' && c != 'E' && c != 'W')
 		return (MAP_ERR);
-	if (i == 0 || j == 0 || i == s->map_y - 1 || j == s->map_x - 1)
+	if (i == 0 || j == 0 || i == s->ms.y - 1 || j == s->ms.x - 1)
 		if (c != '1' && c != ' ')
 			return (MAP_ERR);
 	if (c == ' ' && check_map_5(s, i, j) != 0)
@@ -72,10 +72,10 @@ int			check_map_3(t_info *s)
 
 	i = -1;
 	sig = 0;
-	while (++i < s->map_y)
+	while (++i < s->ms.y)
 	{
 		j = -1;
-		while (++j < s->map_x)
+		while (++j < s->ms.x)
 		{
 			if (s->map[i][j])
 			{
@@ -122,8 +122,8 @@ int			check_map(char *line, t_info *s)
 	{
 		s->sig_map = '1';
 		temp = ft_strlen(line);
-		temp > s->map_x ? s->map_x = temp : 0;
-		s->map_y++;
+		temp > s->ms.x ? s->ms.x = temp : 0;
+		s->ms.y++;
 		free(line);
 	}
 	if (s->sig_map == '1' &&

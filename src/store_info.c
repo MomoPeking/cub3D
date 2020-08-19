@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 12:11:22 by qdang             #+#    #+#             */
-/*   Updated: 2020/08/04 16:25:29 by qdang            ###   ########.fr       */
+/*   Updated: 2020/08/18 22:31:33 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	store_map(t_info *s, int fd)
 	int		j;
 
 	i = 0;
-	s->map = ft_mapnew(s->map_x, s->map_y, ' ');
+	s->map = ft_mapnew(s->ms.x, s->ms.y, ' ');
 	while (get_next_line(fd, &line) != 0)
 	{
 		if (ft_strchk(line, " ", 'B') == 1 || ft_strchk(line, "1", 'B') == 1)
@@ -87,7 +87,7 @@ static int	store_info(t_info *s, int fd)
 			return (err);
 	}
 	s->sig_info != INFO_SIG ? err = INFO_ERR : 0;
-	s->map_x <= 0 || s->map_y <= 0 ? err = MAP_ERR : 0;
+	s->ms.x <= 0 || s->ms.y <= 0 ? err = MAP_ERR : 0;
 	return (err);
 }
 

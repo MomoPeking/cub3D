@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calc_its_quadrant_1.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qdang <qdang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 10:27:35 by qdang             #+#    #+#             */
-/*   Updated: 2020/08/12 14:25:42 by qdang            ###   ########.fr       */
+/*   Updated: 2020/08/18 22:51:42 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,16 @@ static int	calc_its_quadrant_1_i(t_info *s, double radian)
 
 	i = 0;
 	c = ' ';
-	temp_y = s->grid_y - 1 - i;
-	temp_x = s->grid_x + (int)(0.5 + (0.5 + i) * tan(radian));
-	if (temp_y >= 0 && temp_x <= s->map_x - 1)
+	temp_y = s->grid.y - 1 - i;
+	temp_x = s->grid.x + (int)(0.5 + (0.5 + i) * tan(radian));
+	if (temp_y >= 0 && temp_x <= s->ms.x - 1)
 		c = s->map[temp_y][temp_x];
 	while (c == '0' || c == s->start)
 	{
 		i++;
-		temp_y = s->grid_y - 1 - i;
-		temp_x = s->grid_x + (int)(0.5 + (0.5 + i) * tan(radian));
-		if (temp_y >= 0 && temp_x <= s->map_x - 1)
+		temp_y = s->grid.y - 1 - i;
+		temp_x = s->grid.x + (int)(0.5 + (0.5 + i) * tan(radian));
+		if (temp_y >= 0 && temp_x <= s->ms.x - 1)
 			c = s->map[temp_y][temp_x];
 		else
 			break ;
@@ -47,16 +47,16 @@ static int	calc_its_quadrant_1_j(t_info *s, double radian)
 
 	j = 0;
 	c = ' ';
-	temp_y = s->grid_y - (int)(0.5 + (0.5 + j) / tan(radian));
-	temp_x = s->grid_x + 1 + j;
-	if (temp_y >= 0 && temp_x <= s->map_x - 1)
+	temp_y = s->grid.y - (int)(0.5 + (0.5 + j) / tan(radian));
+	temp_x = s->grid.x + 1 + j;
+	if (temp_y >= 0 && temp_x <= s->ms.x - 1)
 		c = s->map[temp_y][temp_x];
 	while (c == '0' || c == s->start)
 	{
 		j++;
-		temp_y = s->grid_y - (int)(0.5 + (0.5 + j) / tan(radian));
-		temp_x = s->grid_x + 1 + j;
-		if (temp_y >= 0 && temp_x <= s->map_x - 1)
+		temp_y = s->grid.y - (int)(0.5 + (0.5 + j) / tan(radian));
+		temp_x = s->grid.x + 1 + j;
+		if (temp_y >= 0 && temp_x <= s->ms.x - 1)
 			c = s->map[temp_y][temp_x];
 		else
 			break ;
@@ -70,14 +70,14 @@ static void	calc_its_quadrant_1_0(t_info *s)
 	int		i;
 
 	i = 0;
-	c = s->map[s->grid_y - 1][s->grid_x];
+	c = s->map[s->grid.y - 1][s->grid.x];
 	while (c == '0' || c == s->start)
 	{
 		i++;
-		c = s->map[s->grid_y - 1 - i][s->grid_x];
+		c = s->map[s->grid.y - 1 - i][s->grid.x];
 	}
-	s->its_x = s->stand_x;
-	s->its_y = s->stand_y - (int)((0.5 + i) * UL);
+	s->its.x = s->stand.x;
+	s->its.y = s->stand.y - (int)((0.5 + i) * UL);
 }
 
 void		calc_its_quadrant_1(t_info *s, double radian)
@@ -93,13 +93,13 @@ void		calc_its_quadrant_1(t_info *s, double radian)
 		j = calc_its_quadrant_1_j(s, radian);
 		if ((int)((0.5 + i) * UL) <= (int)((0.5 + j) * UL / tan(radian)))
 		{
-			s->its_x = s->stand_x + (int)((0.5 + i) * UL * tan(radian));
-			s->its_y = s->stand_y - (int)((0.5 + i) * UL);
+			s->its.x = s->stand.x + (int)((0.5 + i) * UL * tan(radian));
+			s->its.y = s->stand.y - (int)((0.5 + i) * UL);
 		}
 		else
 		{
-			s->its_x = s->stand_x + (int)((0.5 + j) * UL);
-			s->its_y = s->stand_y - (int)((0.5 + j) * UL / tan(radian));
+			s->its.x = s->stand.x + (int)((0.5 + j) * UL);
+			s->its.y = s->stand.y - (int)((0.5 + j) * UL / tan(radian));
 		}
 	}
 }

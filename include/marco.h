@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 08:49:12 by qdang             #+#    #+#             */
-/*   Updated: 2020/08/16 18:05:24 by qdang            ###   ########.fr       */
+/*   Updated: 2020/08/18 15:54:45 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,14 @@
 # define C_SIG		19
 # define INFO_SIG	9699690
 
-# define UL         20
+# define UL         10
+# define CUBE		100
 # define FOV		60
 # define TURN		30
 # define REDUND     10e-5
 # define PREC		1000
-# define BEGIN_X	40
-# define BEGIN_Y	40
+# define BEGIN_X	10
+# define BEGIN_Y	10
 
 # define ESC		53
 # define W			13

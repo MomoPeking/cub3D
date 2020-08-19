@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 18:41:18 by qdang             #+#    #+#             */
-/*   Updated: 2020/08/16 18:03:39 by qdang            ###   ########.fr       */
+/*   Updated: 2020/08/18 23:04:41 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,13 @@ int		press_key(int key, t_info *s);
 int		close_scene(t_info *s);
 
 void	calc_its(t_info *s, double radian);
+void	calc_dis(t_info *s, double radian);
 void	calc_its_quadrant_1(t_info *s, double radian);
 void	calc_its_quadrant_2(t_info *s, double radian);
 void	calc_its_quadrant_3(t_info *s, double radian);
 void	calc_its_quadrant_4(t_info *s, double radian);
 
 void	draw_2d_map(t_info *s);
-void	draw_line(t_info *s, int x, int y, int color);
+void	draw_line(t_info *s, t_point p1, t_point p2, int color);
 
 #endif

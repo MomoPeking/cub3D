@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 14:53:54 by qdang             #+#    #+#             */
-/*   Updated: 2020/08/16 17:59:29 by qdang            ###   ########.fr       */
+/*   Updated: 2020/08/18 23:05:21 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ static void	draw_2d_frame(t_info *s)
 	int		j;
 
 	i = -1;
-	while (++i < s->map_y)
+	while (++i < s->ms.y)
 	{
 		j = -1;
-		while (++j < s->map_x)
+		while (++j < s->ms.x)
 		{
 			if (s->map[i][j] == '1')
 				draw_2d_block(s, BEGIN_X + j * UL, BEGIN_Y + i * UL, WHITE);
@@ -55,18 +55,24 @@ static void	draw_2d_frame(t_info *s)
 
 void		draw_2d_map(t_info *s)
 {
-	int		i;
+//	int		i;
 
 	mlx_clear_window(s->mlx_ptr, s->win_ptr);
-	s->grid_x = s->start_x + s->move_x;
-	s->grid_y = s->start_y + s->move_y;
-	s->stand_x = BEGIN_X + (s->grid_x + 0.5) * UL;
-	s->stand_y = BEGIN_Y + (s->grid_y + 0.5) * UL;
+	s->grid.x = s->sp.x + s->move.x;
+	s->grid.y = s->sp.y + s->move.y;
+	s->stand.x = BEGIN_X + (s->grid.x + 0.5) * UL;
+	s->stand.y = BEGIN_Y + (s->grid.y + 0.5) * UL;
+	calc_its(s, s->sight_m);
+	calc_dis(s, 0);
+	draw_line(s, s->stand, s->its, LIME);
+	draw_2d_frame(s);
+
+/*	
 	i = -1;
 	while (++i <= PREC)
 	{
 		calc_its(s, (double)(s->start_sight + i * (M_PI / 180 * FOV) / PREC));
-		draw_line(s, s->its_x, s->its_y, LIME);
+		draw_line(s, s->its.x, s->its.y, LIME);
 	}
-	draw_2d_frame(s);
+*/
 }

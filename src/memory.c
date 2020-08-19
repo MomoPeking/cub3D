@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 11:12:00 by qdang             #+#    #+#             */
-/*   Updated: 2020/08/04 16:34:28 by qdang            ###   ########.fr       */
+/*   Updated: 2020/08/18 22:32:12 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	free_info(t_info *s)
 	free(s->s);
 	if (s->map != NULL)
 	{
-		while (++i < s->map_y)
+		while (++i < s->ms.y)
 			free(s->map[i]);
 		free(s->map);
 	}
