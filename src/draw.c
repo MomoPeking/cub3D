@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 14:53:54 by qdang             #+#    #+#             */
-/*   Updated: 2020/09/13 21:10:58 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/14 15:22:40 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void	draw_2d_sight(t_info *s)
 	}
 	calculate(s, s->sight);
 	draw_line(s, s->stand, s->its, RED);
-	calculate(s, s->sight +  M_PI / 180 * FOV);
+	calculate(s, s->sight + M_PI / 180 * FOV);
 	draw_line(s, s->stand, s->its, RED);
 }
 
@@ -73,11 +73,11 @@ static void	draw_vline(t_info *s, int i)
 	int		k;
 	int		wall_up;
 	int		wall_down;
-	
+
 	k = -1;
 	wall_up = s->res.y / 2 - WALL / s->length / 2;
 	wall_down = s->res.y / 2 + WALL / s->length / 2;
-	while (++k < wall_up)	
+	while (++k < wall_up)
 		s->img_add[k * s->res.x + i] = s->color_c;
 	k--;
 	while (++k < wall_down)
@@ -109,5 +109,4 @@ void		draw(t_info *s)
 	mlx_put_image_to_window(s->mlx_ptr, s->win_ptr, s->img_ptr, 0, 0);
 }
 
-//	要做的事：走路方向，上下左右？
 //	地圖格式再修改？

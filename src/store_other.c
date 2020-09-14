@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/21 21:38:23 by qdang             #+#    #+#             */
-/*   Updated: 2020/09/11 14:26:30 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/14 14:40:34 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int			store_start(t_info *s, int i, int j)
 	s->sp.x = j;
 	s->sp.y = i;
 	s->start = s->map[i][j];
-	s->start == 'N' ? s->sight = 0 - angle  : 0;
+	s->start == 'N' ? s->sight = 0 - angle : 0;
 	s->start == 'E' ? s->sight = M_PI_2 - angle : 0;
 	s->start == 'S' ? s->sight = M_PI - angle : 0;
 	s->start == 'W' ? s->sight = M_PI_2 * 3 - angle : 0;

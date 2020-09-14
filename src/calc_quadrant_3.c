@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 10:43:10 by qdang             #+#    #+#             */
-/*   Updated: 2020/09/13 20:37:27 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/14 14:38:52 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static int	calc_quadrant_3_j(t_info *s, double angle)
 	temp_y = s->grid.y + (int)(0.5 + (0.5 + j) / tan(angle));
 	temp_x = s->grid.x - 1 - j;
 	if (temp_y <= s->ms.y - 1 && temp_x >= 0)
-		c = s->map[temp_y][temp_x];		
+		c = s->map[temp_y][temp_x];
 	while (c == '0' || c == s->start)
 	{
 		j++;

@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 10:27:35 by qdang             #+#    #+#             */
-/*   Updated: 2020/09/13 20:37:35 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/14 14:38:23 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ static void	calc_quadrant_1_0(t_info *s)
 	s->length = (0.5 + i) * SL;
 	s->its.x = s->stand.x;
 	s->its.y = s->stand.y - s->length;
-
 }
 
 void		calc_quadrant_1(t_info *s, double angle, double dev)

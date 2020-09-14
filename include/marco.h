@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 08:49:12 by qdang             #+#    #+#             */
-/*   Updated: 2020/09/13 20:54:08 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/14 15:23:41 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # define SL			10
 # define WALL		3000
 # define FOV		66
+# define TURN		45
 # define REDUND     10e-5
 
 # define ESC		53

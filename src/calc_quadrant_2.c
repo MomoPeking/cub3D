@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 11:29:01 by qdang             #+#    #+#             */
-/*   Updated: 2020/09/13 20:37:31 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/14 14:38:36 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void		calc_quadrant_2(t_info *s, double angle, double dev)
 		{
 			s->its.x = s->stand.x - (int)((0.5 + j) * SL / tan(angle));
 			s->its.y = s->stand.y - (int)((0.5 + j) * SL);
-			s->length = (0.5 + j) * SL / sin(angle) * cos(dev);	
+			s->length = (0.5 + j) * SL / sin(angle) * cos(dev);
 		}
 	}
 }
