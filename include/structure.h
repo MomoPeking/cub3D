@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 08:51:15 by qdang             #+#    #+#             */
-/*   Updated: 2020/08/18 23:07:32 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/13 19:04:55 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@
 ** grid(x, y) in grids are the coordinates where they player at now(sp + move).
 ** stand(x, y) are the coordinates where the player stands on the screen.
 ** its(x, y) are the coordinates a sight intersect with a wall or an object.
-** sight_m is an angle in the middle of the FOV.
+** sight is an angle where the casting start.
+** length is the distance from stand(x, y) to its(x, y). Then we use length to
+** calculate the height of the wall.
 */
 
 typedef	struct	s_point
@@ -28,13 +30,6 @@ typedef	struct	s_point
 	int		x;
 	int		y;
 }				t_point;
-
-typedef	struct	s_color
-{
-	int		r;
-	int		g;
-	int		b;
-}				t_color;
 
 typedef	struct	s_info
 {
@@ -44,8 +39,8 @@ typedef	struct	s_info
 	char	*we;
 	char	*ea;
 	char	*s;
-	t_color	floor;
-	t_color	ceiling;
+	int		color_c;
+	int		color_f;
 	int		sig_info;
 	char	sig_map;
 	char	**map;
@@ -56,9 +51,12 @@ typedef	struct	s_info
 	t_point grid;
 	t_point	stand;
 	t_point its;
-	double	sight_m;
+	double	sight;
+	double	length;
 	void	*mlx_ptr;
 	void	*win_ptr;
+	void	*img_ptr;
+	int		*img_add;
 }				t_info;
 
 #endif

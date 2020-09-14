@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 16:36:44 by qdang             #+#    #+#             */
-/*   Updated: 2020/08/18 23:10:30 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/13 19:02:23 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,15 @@
 
 static void	create_scene(t_info *s)
 {
+	int		bpp;
+	int		sl;
+	int		endian;
+
 	s->mlx_ptr = mlx_init();
 	s->win_ptr = mlx_new_window(s->mlx_ptr, s->res.x, s->res.y, "cub3D");
-	draw_2d_map(s);
+	s->img_ptr = mlx_new_image(s->mlx_ptr, s->res.x, s->res.y);
+	s->img_add = (int *)mlx_get_data_addr(s->img_ptr, &bpp, &sl, &endian);
+	draw(s);
 	mlx_hook(s->win_ptr, 2, 0, press_key, s);
 	mlx_hook(s->win_ptr, 17, 0, close_scene, s);
 	mlx_loop(s->mlx_ptr);

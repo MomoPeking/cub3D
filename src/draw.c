@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 14:53:54 by qdang             #+#    #+#             */
-/*   Updated: 2020/08/18 23:05:21 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/13 19:06:24 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	draw_2d_block(t_info *s, int x, int y, int color)
 	{
 		j = -1;
 		while (++j < UL)
-			mlx_pixel_put(s->mlx_ptr, s->win_ptr, x + i, y + j, color);
+			s->img_add[(i + y) * s->res.x + x + j] = color;
 	}
 }
 
@@ -42,37 +42,69 @@ static void	draw_2d_frame(t_info *s)
 		while (++j < s->ms.x)
 		{
 			if (s->map[i][j] == '1')
-				draw_2d_block(s, BEGIN_X + j * UL, BEGIN_Y + i * UL, WHITE);
-			if (s->map[i][j] == '2')
-				draw_2d_block(s, BEGIN_X + j * UL, BEGIN_Y + i * UL, YELLOW);
+				draw_2d_block(s, j * UL, i * UL, WHITE);
+			else if (s->map[i][j] == '2')
+				draw_2d_block(s, j * UL, i * UL, YELLOW);
 		}
 	}
 }
 
-/*
-** (x, y) on the screen is in the reversed order of (x, y) stored in the map.
-*/
-
-void		draw_2d_map(t_info *s)
+static void	draw_2d_sight(t_info *s)
 {
-//	int		i;
+	int		i;
+	int		j;
 
-	mlx_clear_window(s->mlx_ptr, s->win_ptr);
+	i = -1;
+	while (++i < s->ms.y)
+	{
+		j = -1;
+		while (++j < s->ms.x)
+			if (s->map[i][j] != '1' && s->map[i][j] != '2')
+				draw_2d_block(s, j * UL, i * UL, BLACK);
+	}
+	calculate(s, s->sight);
+	draw_line(s, s->stand, s->its, RED);
+	calculate(s, s->sight +  M_PI / 180 * FOV);
+	draw_line(s, s->stand, s->its, RED);
+}
+
+static void	draw_vline(t_info *s, int i)
+{
+	int		k;
+	int		wall_up;
+	int		wall_down;
+	
+	k = -1;
+	wall_up = s->res.y / 2 - WALL / s->length / 2;
+	wall_down = s->res.y / 2 + WALL / s->length / 2;
+	while (++k < wall_up)	
+		s->img_add[k * s->res.x + i] = s->color_c;
+	k--;
+	while (++k < wall_down)
+		s->img_add[k * s->res.x + i] = LIME;
+	k--;
+	while (++k < s->res.y)
+		s->img_add[k * s->res.x + i] = s->color_f;
+}
+
+void		draw(t_info *s)
+{
+	int		i;
+	double	angle;
+
 	s->grid.x = s->sp.x + s->move.x;
 	s->grid.y = s->sp.y + s->move.y;
-	s->stand.x = BEGIN_X + (s->grid.x + 0.5) * UL;
-	s->stand.y = BEGIN_Y + (s->grid.y + 0.5) * UL;
-	calc_its(s, s->sight_m);
-	calc_dis(s, 0);
-	draw_line(s, s->stand, s->its, LIME);
-	draw_2d_frame(s);
-
-/*	
+	s->stand.x = (s->grid.x + 0.5) * UL;
+	s->stand.y = (s->grid.y + 0.5) * UL;
 	i = -1;
-	while (++i <= PREC)
+	while (++i < s->res.x)
 	{
-		calc_its(s, (double)(s->start_sight + i * (M_PI / 180 * FOV) / PREC));
-		draw_line(s, s->its.x, s->its.y, LIME);
+		angle = (double)(i + 1) / s->res.x * FOV;
+		angle *= M_PI / 180;
+		calculate(s, s->sight + angle);
+		draw_vline(s, i);
 	}
-*/
+	draw_2d_sight(s);
+	draw_2d_frame(s);
+	mlx_put_image_to_window(s->mlx_ptr, s->win_ptr, s->img_ptr, 0, 0);
 }

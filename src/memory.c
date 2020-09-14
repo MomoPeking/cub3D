@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 11:12:00 by qdang             #+#    #+#             */
-/*   Updated: 2020/08/18 22:32:12 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/12 18:04:37 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	init_info(t_info *s)
 	s->map = NULL;
 	s->mlx_ptr = NULL;
 	s->win_ptr = NULL;
+	s->img_ptr = NULL;
+	s->img_add = NULL;
 }
 
 void	free_split(char **str)

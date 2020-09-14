@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 12:11:22 by qdang             #+#    #+#             */
-/*   Updated: 2020/08/18 22:31:33 by qdang            ###   ########.fr       */
+/*   Updated: 2020/08/19 16:12:17 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ static int	store_info_2(t_info *s, char *line)
 	else if (split != NULL && ft_strcmp(split[0], "S") == 0)
 		err = store_texture_s(s, split);
 	else if (split != NULL && ft_strcmp(split[0], "F") == 0)
-		err = store_color_floor(s, split);
+		err = store_color(s, split, 'F');
 	else if (split != NULL && ft_strcmp(split[0], "C") == 0)
-		err = store_color_ceiling(s, split);
+		err = store_color(s, split, 'C');
 	else
 		err = INFO_ERR;
 	free_split(split);

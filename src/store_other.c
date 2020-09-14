@@ -6,13 +6,13 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/21 21:38:23 by qdang             #+#    #+#             */
-/*   Updated: 2020/08/18 22:40:24 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/11 14:26:30 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int		store_resolution(t_info *s, char **split)
+int			store_resolution(t_info *s, char **split)
 {
 	if (count_split(split) != 3)
 		return (RES_ERR);
@@ -26,60 +26,58 @@ int		store_resolution(t_info *s, char **split)
 	return (0);
 }
 
-int		store_color_floor(t_info *s, char **split)
+static void	store_color_2(t_info *s, char c, int mix)
+{
+	if (c == 'C')
+	{
+		s->color_c = mix;
+		s->sig_info *= C_SIG;
+	}
+	if (c == 'F')
+	{
+		s->color_f = mix;
+		s->sig_info *= F_SIG;
+	}
+}
+
+int			store_color(t_info *s, char **split, char c)
 {
 	char	**color;
+	int		r;
+	int		g;
+	int		b;
+	int		mix;
 
 	if (count_split(split) != 2 || (ft_strchk(split[1], ",", 'E') == 1))
 		return (COL_ERR);
 	color = ft_strsplit(split[1], ',');
-	if (check_color(color) == COL_ERR)
+	if (check_color(color) == COL_ERR || (c != 'F' && c != 'C'))
 		return (COL_ERR);
-	s->floor.r = ft_atoi(color[0]);
-	s->floor.g = ft_atoi(color[1]);
-	s->floor.b = ft_atoi(color[2]);
-	if (s->floor.r > 255 || s->floor.r < 0 || s->floor.g > 255 ||
-		s->floor.g < 0 || s->floor.b > 255 || s->floor.b < 0)
+	r = ft_atoi(color[0]);
+	g = ft_atoi(color[1]);
+	b = ft_atoi(color[2]);
+	if (r > 255 || r < 0 || g > 255 || g < 0 || b > 255 || b < 0)
 	{
 		free_split(color);
 		return (COL_ERR);
 	}
+	mix = r * 65536 + g * 256 + b;
+	store_color_2(s, c, mix);
 	free_split(color);
-	s->sig_info *= F_SIG;
 	return (0);
 }
 
-int		store_color_ceiling(t_info *s, char **split)
+int			store_start(t_info *s, int i, int j)
 {
-	char	**color;
+	double	angle;
 
-	if (count_split(split) != 2 || (ft_strchk(split[1], ",", 'E') == 1))
-		return (COL_ERR);
-	color = ft_strsplit(split[1], ',');
-	if (check_color(color) == COL_ERR)
-		return (COL_ERR);
-	s->ceiling.r = ft_atoi(color[0]);
-	s->ceiling.g = ft_atoi(color[1]);
-	s->ceiling.b = ft_atoi(color[2]);
-	if (s->ceiling.r > 255 || s->ceiling.r < 0 || s->ceiling.g > 255 ||
-		s->ceiling.g < 0 || s->ceiling.b > 255 || s->ceiling.b < 0)
-	{
-		free_split(color);
-		return (COL_ERR);
-	}
-	free_split(color);
-	s->sig_info *= C_SIG;
-	return (0);
-}
-
-int		store_start(t_info *s, int i, int j)
-{
+	angle = M_PI / 180 * FOV / 2;
 	s->sp.x = j;
 	s->sp.y = i;
 	s->start = s->map[i][j];
-	s->start == 'N' ? s->sight_m = 0 : 0;
-	s->start == 'E' ? s->sight_m = M_PI_2 : 0;
-	s->start == 'S' ? s->sight_m = M_PI : 0;
-	s->start == 'W' ? s->sight_m = M_PI_2 * 3 : 0;
+	s->start == 'N' ? s->sight = 0 - angle  : 0;
+	s->start == 'E' ? s->sight = M_PI_2 - angle : 0;
+	s->start == 'S' ? s->sight = M_PI - angle : 0;
+	s->start == 'W' ? s->sight = M_PI_2 * 3 - angle : 0;
 	return (1);
 }

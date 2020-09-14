@@ -6,7 +6,7 @@
 #    By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/14 11:38:08 by qdang             #+#    #+#              #
-#    Updated: 2020/08/18 15:31:51 by qdang            ###   ########.fr        #
+#    Updated: 2020/09/13 18:55:01 by qdang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,8 @@ FLAGS = -Wall -Wextra -Werror
 SOURCE = main.c error.c memory.c interaction.c \
 			draw.c draw_line.c \
 			check_info.c check_map.c \
-			calc.c calc_its_quadrant_1.c calc_its_quadrant_2.c \
-			calc_its_quadrant_3.c calc_its_quadrant_4.c \
+			calculate.c calc_quadrant_1.c calc_quadrant_2.c \
+			calc_quadrant_3.c calc_quadrant_4.c \
 			store_info.c store_texture.c store_other.c \
 
 LIB_PATH = ./libft
@@ -37,7 +37,7 @@ HED = ./include/cub3d.h
 $(NAME):
 	@make -C $(LIB_PATH)
 	@make -C $(MLX_PATH)
-	@gcc $(FLAGS) -c $(SRC) -I $(HED)
+	@gcc -c $(SRC) -I $(HED)
 	@gcc $(MLX_LINK) $(LIB_LINK) $(OBJ) -o $(NAME)
 
 all: $(NAME)
