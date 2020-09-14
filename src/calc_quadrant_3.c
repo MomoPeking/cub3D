@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 10:43:10 by qdang             #+#    #+#             */
-/*   Updated: 2020/09/13 18:57:22 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/13 20:37:27 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,12 @@ static void	calc_quadrant_3_0(t_info *s)
 		i++;
 		c = s->map[s->grid.y + 1 + i][s->grid.x];
 	}
-	s->length = (0.5 + i) * UL;
+	s->length = (0.5 + i) * SL;
 	s->its.x = s->stand.x;
 	s->its.y = s->stand.y + s->length;
 }
 
-void		calc_quadrant_3(t_info *s, double angle)
+void		calc_quadrant_3(t_info *s, double angle, double dev)
 {
 	int		i;
 	int		j;
@@ -93,17 +93,17 @@ void		calc_quadrant_3(t_info *s, double angle)
 		angle -= M_PI;
 		i = calc_quadrant_3_i(s, angle);
 		j = calc_quadrant_3_j(s, angle);
-		if ((int)((0.5 + i) * UL) <= (int)((0.5 + j) * UL / tan(angle)))
+		if ((int)((0.5 + i) * SL) <= (int)((0.5 + j) * SL / tan(angle)))
 		{
-			s->its.x = s->stand.x - (int)((0.5 + i) * UL * tan(angle));
-			s->its.y = s->stand.y + (int)((0.5 + i) * UL);
-			s->length = (0.5 + i) * UL / cos(angle);
+			s->its.x = s->stand.x - (int)((0.5 + i) * SL * tan(angle));
+			s->its.y = s->stand.y + (int)((0.5 + i) * SL);
+			s->length = (0.5 + i) * SL / cos(angle) * cos(dev);
 		}
 		else
 		{
-			s->its.x = s->stand.x - (int)((0.5 + j) * UL);
-			s->its.y = s->stand.y + (int)((0.5 + j) * UL / tan(angle));
-			s->length = (0.5 + j) * UL / sin(angle);
+			s->its.x = s->stand.x - (int)((0.5 + j) * SL);
+			s->its.y = s->stand.y + (int)((0.5 + j) * SL / tan(angle));
+			s->length = (0.5 + j) * SL / sin(angle) * cos(dev);
 		}
 	}
 }

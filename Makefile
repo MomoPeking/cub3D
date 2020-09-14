@@ -6,7 +6,7 @@
 #    By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/14 11:38:08 by qdang             #+#    #+#              #
-#    Updated: 2020/09/13 18:55:01 by qdang            ###   ########.fr        #
+#    Updated: 2020/09/13 20:09:26 by qdang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ HED = ./include/cub3d.h
 $(NAME):
 	@make -C $(LIB_PATH)
 	@make -C $(MLX_PATH)
-	@gcc -c $(SRC) -I $(HED)
+	@gcc -c $(FLAGS) $(SRC) -I $(HED)
 	@gcc $(MLX_LINK) $(LIB_LINK) $(OBJ) -o $(NAME)
 
 all: $(NAME)

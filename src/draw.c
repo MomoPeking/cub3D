@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 14:53:54 by qdang             #+#    #+#             */
-/*   Updated: 2020/09/13 19:06:24 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/13 21:10:58 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ static void	draw_2d_block(t_info *s, int x, int y, int color)
 	int		j;
 
 	i = -1;
-	while (++i < UL)
+	while (++i < SL)
 	{
 		j = -1;
-		while (++j < UL)
+		while (++j < SL)
 			s->img_add[(i + y) * s->res.x + x + j] = color;
 	}
 }
@@ -42,9 +42,9 @@ static void	draw_2d_frame(t_info *s)
 		while (++j < s->ms.x)
 		{
 			if (s->map[i][j] == '1')
-				draw_2d_block(s, j * UL, i * UL, WHITE);
+				draw_2d_block(s, j * SL, i * SL, WHITE);
 			else if (s->map[i][j] == '2')
-				draw_2d_block(s, j * UL, i * UL, YELLOW);
+				draw_2d_block(s, j * SL, i * SL, YELLOW);
 		}
 	}
 }
@@ -60,7 +60,7 @@ static void	draw_2d_sight(t_info *s)
 		j = -1;
 		while (++j < s->ms.x)
 			if (s->map[i][j] != '1' && s->map[i][j] != '2')
-				draw_2d_block(s, j * UL, i * UL, BLACK);
+				draw_2d_block(s, j * SL, i * SL, BLACK);
 	}
 	calculate(s, s->sight);
 	draw_line(s, s->stand, s->its, RED);
@@ -94,8 +94,8 @@ void		draw(t_info *s)
 
 	s->grid.x = s->sp.x + s->move.x;
 	s->grid.y = s->sp.y + s->move.y;
-	s->stand.x = (s->grid.x + 0.5) * UL;
-	s->stand.y = (s->grid.y + 0.5) * UL;
+	s->stand.x = (s->grid.x + 0.5) * SL;
+	s->stand.y = (s->grid.y + 0.5) * SL;
 	i = -1;
 	while (++i < s->res.x)
 	{
@@ -108,3 +108,6 @@ void		draw(t_info *s)
 	draw_2d_frame(s);
 	mlx_put_image_to_window(s->mlx_ptr, s->win_ptr, s->img_ptr, 0, 0);
 }
+
+//	要做的事：走路方向，上下左右？
+//	地圖格式再修改？
