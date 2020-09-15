@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 22:23:41 by qdang             #+#    #+#             */
-/*   Updated: 2020/08/18 22:31:49 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/15 11:57:15 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,16 @@
 
 /*
 ** Check if the map is surround by "1".
-** Namely, all " " are only next to " " or "1".
+** Namely, all " " are only next to " " or "1" and no " " is surround by "1".
 */
 
 static int	check_map_5(t_info *s, int i, int j)
 {
-	if (i - 1 >= 0 && s->map[i - 1][j] != ' ' && s->map[i - 1][j] != '1')
+	if ((i - 1 >= 0 && s->map[i - 1][j] != ' ' && s->map[i - 1][j] != '1') ||
+		(i + 1 < s->ms.y && s->map[i + 1][j] != ' ' && s->map[i + 1][j] != '1'))
 		return (MAP_ERR);
-	if (i + 1 < s->ms.y && s->map[i + 1][j] != ' ' && s->map[i + 1][j] != '1')
-		return (MAP_ERR);
-	if (j - 1 >= 0 && s->map[i][j - 1] != ' ' && s->map[i][j - 1] != '1')
-		return (MAP_ERR);
-	if (j + 1 < s->ms.x && s->map[i][j + 1] != ' ' && s->map[i][j + 1] != '1')
+	if ((j - 1 >= 0 && s->map[i][j - 1] != ' ' && s->map[i][j - 1] != '1') ||
+		(j + 1 < s->ms.x && s->map[i][j + 1] != ' ' && s->map[i][j + 1] != '1'))
 		return (MAP_ERR);
 	if (i - 1 >= 0 && j - 1 >= 0 &&
 		s->map[i - 1][j - 1] != ' ' && s->map[i - 1][j - 1] != '1')
@@ -38,6 +36,12 @@ static int	check_map_5(t_info *s, int i, int j)
 		return (MAP_ERR);
 	if (i + 1 < s->ms.y && j + 1 < s->ms.x &&
 		s->map[i + 1][j + 1] != ' ' && s->map[i + 1][j + 1] != '1')
+		return (MAP_ERR);
+	if (i - 1 >= 0 && i + 1 < s->ms.y && j - 1 >= 0 && j + 1 < s->ms.x &&
+		s->map[i - 1][j - 1] == '1' && s->map[i][j - 1] == '1' &&
+		s->map[i + 1][j - 1] == '1' && s->map[i - 1][j] == '1' &&
+		s->map[i + 1][j] == '1' && s->map[i - 1][j + 1] == '1' &&
+		s->map[i][j + 1] == '1' && s->map[i + 1][j + 1] == '1')
 		return (MAP_ERR);
 	return (0);
 }

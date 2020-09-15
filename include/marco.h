@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 08:49:12 by qdang             #+#    #+#             */
-/*   Updated: 2020/09/14 15:23:41 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/15 11:52:16 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define INFO_SIG	9699690
 
 # define SL			10
-# define WALL		3000
+# define WALL		3200
 # define FOV		66
 # define TURN		45
 # define REDUND     10e-5
@@ -49,9 +49,11 @@
 
 # define RED	    0XFF0000
 # define WHITE      0XFFFFFF
-# define YELLOW     0XFFFF00
-# define LIME       0X00FF00
 # define BLACK      0X000000
+
+# define LIME       0X00FF00
+# define BLUE       0X00FFFF
+# define PINK       0XFF33FF
 # define ORANGE     0XFFA500
 
 #endif

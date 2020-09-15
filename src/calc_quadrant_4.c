@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 10:34:25 by qdang             #+#    #+#             */
-/*   Updated: 2020/09/13 20:37:24 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/15 11:20:44 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ static void	calc_quadrant_4_0(t_info *s)
 	s->length = (0.5 + i) * SL;
 	s->its.x = s->stand.x + s->length;
 	s->its.y = s->stand.y;
+	s->wall = 'E';
 }
 
 void		calc_quadrant_4(t_info *s, double angle, double dev)
@@ -98,12 +99,14 @@ void		calc_quadrant_4(t_info *s, double angle, double dev)
 			s->its.x = s->stand.x + (int)((0.5 + i) * SL);
 			s->its.y = s->stand.y + (int)((0.5 + i) * SL * tan(angle));
 			s->length = (0.5 + i) * SL / cos(angle) * cos(dev);
+			s->wall = 'E';
 		}
 		else
 		{
 			s->its.x = s->stand.x + (int)((0.5 + j) * SL / tan(angle));
 			s->its.y = s->stand.y + (int)((0.5 + j) * SL);
 			s->length = (0.5 + j) * SL / sin(angle) * cos(dev);
+			s->wall = 'S';
 		}
 	}
 }

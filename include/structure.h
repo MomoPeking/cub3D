@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 08:51:15 by qdang             #+#    #+#             */
-/*   Updated: 2020/09/13 19:04:55 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/15 09:40:31 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 ** grid(x, y) in grids are the coordinates where they player at now(sp + move).
 ** stand(x, y) are the coordinates where the player stands on the screen.
 ** its(x, y) are the coordinates a sight intersect with a wall or an object.
+** wall is the "N/E/S/W" face of the wall where the sight hits;
 ** sight is an angle where the casting start.
 ** length is the distance from stand(x, y) to its(x, y). Then we use length to
 ** calculate the height of the wall.
@@ -44,13 +45,14 @@ typedef	struct	s_info
 	int		sig_info;
 	char	sig_map;
 	char	**map;
-	t_point	ms;
 	char	start;
+	t_point	ms;
 	t_point	sp;
 	t_point	move;
 	t_point grid;
 	t_point	stand;
 	t_point its;
+	char	wall;
 	double	sight;
 	double	length;
 	void	*mlx_ptr;

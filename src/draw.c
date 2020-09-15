@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 14:53:54 by qdang             #+#    #+#             */
-/*   Updated: 2020/09/14 15:22:40 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/15 12:00:48 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ static void	draw_2d_frame(t_info *s)
 		while (++j < s->ms.x)
 		{
 			if (s->map[i][j] == '1')
-				draw_2d_block(s, j * SL, i * SL, WHITE);
+				draw_2d_block(s, j * SL, i * SL, BLACK);
 			else if (s->map[i][j] == '2')
-				draw_2d_block(s, j * SL, i * SL, YELLOW);
+				draw_2d_block(s, j * SL, i * SL, RED);
 		}
 	}
 }
@@ -59,13 +59,14 @@ static void	draw_2d_sight(t_info *s)
 	{
 		j = -1;
 		while (++j < s->ms.x)
-			if (s->map[i][j] != '1' && s->map[i][j] != '2')
-				draw_2d_block(s, j * SL, i * SL, BLACK);
+			if (s->map[i][j] != '1' && s->map[i][j] != '2'
+				&& s->map[i][j] != ' ')
+				draw_2d_block(s, j * SL, i * SL, WHITE);
 	}
 	calculate(s, s->sight);
-	draw_line(s, s->stand, s->its, RED);
+	draw_line(s, s->stand, s->its, BLUE);
 	calculate(s, s->sight + M_PI / 180 * FOV);
-	draw_line(s, s->stand, s->its, RED);
+	draw_line(s, s->stand, s->its, BLUE);
 }
 
 static void	draw_vline(t_info *s, int i)
@@ -74,14 +75,24 @@ static void	draw_vline(t_info *s, int i)
 	int		wall_up;
 	int		wall_down;
 
-	k = -1;
 	wall_up = s->res.y / 2 - WALL / s->length / 2;
 	wall_down = s->res.y / 2 + WALL / s->length / 2;
+	k = -1;
 	while (++k < wall_up)
 		s->img_add[k * s->res.x + i] = s->color_c;
 	k--;
-	while (++k < wall_down)
-		s->img_add[k * s->res.x + i] = LIME;
+	if (s->wall == 'N')
+		while (++k < wall_down)
+			s->img_add[k * s->res.x + i] = LIME;
+	if (s->wall == 'E')
+		while (++k < wall_down)
+			s->img_add[k * s->res.x + i] = BLUE;
+	if (s->wall == 'S')
+		while (++k < wall_down)
+			s->img_add[k * s->res.x + i] = PINK;
+	if (s->wall == 'W')
+		while (++k < wall_down)
+			s->img_add[k * s->res.x + i] = ORANGE;
 	k--;
 	while (++k < s->res.y)
 		s->img_add[k * s->res.x + i] = s->color_f;
@@ -109,4 +120,4 @@ void		draw(t_info *s)
 	mlx_put_image_to_window(s->mlx_ptr, s->win_ptr, s->img_ptr, 0, 0);
 }
 
-//	地圖格式再修改？
+//	處理毛邊問題，不時出現的豎線問題。
