@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 11:29:01 by qdang             #+#    #+#             */
-/*   Updated: 2020/09/15 11:19:12 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/18 10:47:18 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,16 @@ static void	calc_quadrant_2_0(t_info *s)
 	s->wall = 'W';
 }
 
+static void	calc_quadrant_2_1(t_info *s, int i, double angle, double dev)
+{
+	s->its.x = s->stand.x - (int)((0.5 + i) * SL);
+	s->its.y = s->stand.y - (int)((0.5 + i) * SL * tan(angle));
+	s->length = (0.5 + i) * SL / cos(angle) * cos(dev);
+	s->wall = 'W';
+	if (tan(angle) > 1 - REDUND && tan(angle) < 1 + REDUND)
+		check_stand(s, 0, -1) == 0 ? s->wall = 'N' : 0;
+}
+
 void		calc_quadrant_2(t_info *s, double angle, double dev)
 {
 	int		i;
@@ -95,18 +105,15 @@ void		calc_quadrant_2(t_info *s, double angle, double dev)
 		i = calc_quadrant_2_i(s, angle);
 		j = calc_quadrant_2_j(s, angle);
 		if ((int)((0.5 + i) * SL) <= (int)((0.5 + j) * SL / tan(angle)))
-		{
-			s->its.x = s->stand.x - (int)((0.5 + i) * SL);
-			s->its.y = s->stand.y - (int)((0.5 + i) * SL * tan(angle));
-			s->length = (0.5 + i) * SL / cos(angle) * cos(dev);
-			s->wall = 'W';
-		}
+			calc_quadrant_2_1(s, i, angle, dev);
 		else
 		{
 			s->its.x = s->stand.x - (int)((0.5 + j) * SL / tan(angle));
 			s->its.y = s->stand.y - (int)((0.5 + j) * SL);
 			s->length = (0.5 + j) * SL / sin(angle) * cos(dev);
 			s->wall = 'N';
+			if (tan(angle) > 1 - REDUND && tan(angle) < 1 + REDUND)
+				check_stand(s, -1, 0) == 0 ? s->wall = 'W' : 0;
 		}
 	}
 }

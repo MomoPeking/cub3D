@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 11:12:00 by qdang             #+#    #+#             */
-/*   Updated: 2020/09/17 17:42:57 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/18 06:12:40 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_error(t_info *s, int err)
 		ft_putstr_fd("Error\nThere are missing / extra information.\n", 2);
 	else if (err == MAP_ERR)
 		ft_putstr_fd("Error\nThe map is invalid.\n", 2);
-	system("leaks cub3D");
+//	system("leaks cub3D");
 	exit(EXIT_FAILURE);
 }
 
@@ -75,6 +75,6 @@ void	free_info(t_info *s)
 int		close_scene(t_info *s)
 {
 	free_info(s);
-	system("leaks cub3D");
+//	system("leaks cub3D");
 	exit(0);
 }
