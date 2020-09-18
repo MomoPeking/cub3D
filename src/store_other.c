@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/21 21:38:23 by qdang             #+#    #+#             */
-/*   Updated: 2020/09/14 14:40:34 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/17 17:41:22 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,34 @@ int			store_resolution(t_info *s, char **split)
 	if (s->res.x == 0 || s->res.y == 0)
 		return (RES_ERR);
 	s->sig_info *= R_SIG;
+	return (0);
+}
+
+int			store_tex_add(t_info *s)
+{
+	void	*img_ptr;
+	int		tmp[5];
+
+	img_ptr = mlx_xpm_file_to_image(s->mlx_ptr, s->no, &tmp[0], &tmp[1]);
+	if (img_ptr == NULL)
+		return (TEX_ERR);
+	s->no_add = (int *)mlx_get_data_addr(img_ptr, &tmp[2], &tmp[3], &tmp[4]);
+	img_ptr = mlx_xpm_file_to_image(s->mlx_ptr, s->so, &tmp[0], &tmp[1]);
+	if (img_ptr == NULL)
+		return (TEX_ERR);
+	s->so_add = (int *)mlx_get_data_addr(img_ptr, &tmp[2], &tmp[3], &tmp[4]);
+	img_ptr = mlx_xpm_file_to_image(s->mlx_ptr, s->we, &tmp[0], &tmp[1]);
+	if (img_ptr == NULL)
+		return (TEX_ERR);
+	s->we_add = (int *)mlx_get_data_addr(img_ptr, &tmp[2], &tmp[3], &tmp[4]);
+	img_ptr = mlx_xpm_file_to_image(s->mlx_ptr, s->ea, &tmp[0], &tmp[1]);
+	if (img_ptr == NULL)
+		return (TEX_ERR);
+	s->ea_add = (int *)mlx_get_data_addr(img_ptr, &tmp[2], &tmp[3], &tmp[4]);
+	img_ptr = mlx_xpm_file_to_image(s->mlx_ptr, s->s, &tmp[0], &tmp[1]);
+	if (img_ptr == NULL)
+		return (TEX_ERR);
+	s->s_add = (int *)mlx_get_data_addr(img_ptr, &tmp[2], &tmp[3], &tmp[4]);
 	return (0);
 }
 

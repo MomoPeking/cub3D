@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 18:41:18 by qdang             #+#    #+#             */
-/*   Updated: 2020/09/17 17:04:59 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/17 17:42:25 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,10 @@ int		check_map(char *line, t_info *s);
 int		check_map_2(char *line);
 int		check_map_3(t_info *s);
 
+void	ft_error(t_info *s, int err);
 void	free_split(char **str);
 void	free_info(t_info *s);
-void	ft_error(int err);
+int		close_scene(t_info *s);
 
 int		read_and_store(char	*file, t_info *s);
 int		store_resolution(t_info *s, char **split);
@@ -40,12 +41,11 @@ int		store_texture_so(t_info *s, char **split);
 int		store_texture_we(t_info *s, char **split);
 int		store_texture_ea(t_info *s, char **split);
 int		store_texture_s(t_info *s, char **split);
+int		store_tex_add(t_info *s);
 int		store_color(t_info *s, char **split, char c);
 int		store_start(t_info *s, int i, int j);
 
 int		press_key(int key, t_info *s);
-int		close_scene(t_info *s);
-
 void	calculate(t_info *s, double angle);
 void	calc_quadrant_1(t_info *s, double angle, double dev);
 void	calc_quadrant_2(t_info *s, double angle, double dev);

@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 08:51:15 by qdang             #+#    #+#             */
-/*   Updated: 2020/09/17 17:03:09 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/17 17:45:21 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define STRUCTURE_H
 
 /*
+** wall_cf is a coefficient to make sure the wall is shown as a square.
 ** ms(x, y) in grids is the map size of the map in rectangular, start from 1.
 ** sp(x, y) in grids are the coordinates of startpoint N/E/W/S, start from 0.
 ** move(x, y) in grids are the coordinates the player moved from the sp.
@@ -36,17 +37,22 @@ typedef	struct	s_info
 {
 	t_point	res;
 	char	*no;
+	int		*no_add;
 	char	*so;
+	int		*so_add;
 	char	*we;
+	int		*we_add;
 	char	*ea;
+	int		*ea_add;
 	char	*s;
+	int		*s_add;
 	int		color_c;
 	int		color_f;
 	int		sig_info;
 	char	sig_map;
 	char	**map;
 	char	start;
-	int		wall_cf;	
+	int		wall_cf;
 	t_point	ms;
 	t_point	sp;
 	t_point	move;

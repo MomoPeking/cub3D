@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 14:53:54 by qdang             #+#    #+#             */
-/*   Updated: 2020/09/17 17:09:40 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/17 17:36:58 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,16 +85,16 @@ static void	draw_vline(t_info *s, int i)
 	k--;
 	if (s->wall == 'N')
 		while (++k < wall_down)
-			s->img_add[k * s->res.x + i] = LIME;
+			s->img_add[k * s->res.x + i] = s->no_add[k];
 	if (s->wall == 'E')
 		while (++k < wall_down)
-			s->img_add[k * s->res.x + i] = BLUE;
+			s->img_add[k * s->res.x + i] = s->ea_add[k];
 	if (s->wall == 'S')
 		while (++k < wall_down)
-			s->img_add[k * s->res.x + i] = PINK;
+			s->img_add[k * s->res.x + i] = s->so_add[k];
 	if (s->wall == 'W')
 		while (++k < wall_down)
-			s->img_add[k * s->res.x + i] = ORANGE;
+			s->img_add[k * s->res.x + i] = s->we_add[k];
 	k--;
 	while (++k < s->res.y)
 		s->img_add[k * s->res.x + i] = s->color_f;

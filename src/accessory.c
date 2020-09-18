@@ -6,14 +6,15 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 11:12:00 by qdang             #+#    #+#             */
-/*   Updated: 2020/09/17 17:11:00 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/17 17:42:57 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	ft_error(int err)
+void	ft_error(t_info *s, int err)
 {
+	free_info(s);
 	if (err == OPEN_ERR)
 		ft_putstr_fd("Error\nCannot open the map.\n", 2);
 	else if (err == CLOSE_ERR)
