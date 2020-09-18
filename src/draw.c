@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 14:53:54 by qdang             #+#    #+#             */
-/*   Updated: 2020/09/15 12:00:48 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/17 17:09:40 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,10 @@ static void	draw_vline(t_info *s, int i)
 	int		wall_up;
 	int		wall_down;
 
-	wall_up = s->res.y / 2 - WALL / s->length / 2;
-	wall_down = s->res.y / 2 + WALL / s->length / 2;
+	wall_up = s->res.y / 2 - s->wall_cf / s->length / 2;
+	wall_down = s->res.y / 2 + s->wall_cf / s->length / 2;
+	wall_up < 0 ? wall_up = 0 : 0;
+	wall_down > s->res.y ? wall_down = s->res.y : 0;
 	k = -1;
 	while (++k < wall_up)
 		s->img_add[k * s->res.x + i] = s->color_c;
@@ -119,5 +121,3 @@ void		draw(t_info *s)
 	draw_2d_frame(s);
 	mlx_put_image_to_window(s->mlx_ptr, s->win_ptr, s->img_ptr, 0, 0);
 }
-
-//	處理毛邊問題，不時出現的豎線問題。

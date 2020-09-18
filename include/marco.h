@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 08:49:12 by qdang             #+#    #+#             */
-/*   Updated: 2020/09/15 11:52:16 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/17 17:02:30 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@
 # define INFO_SIG	9699690
 
 # define SL			10
-# define WALL		3200
 # define FOV		66
 # define TURN		45
 # define REDUND     10e-5

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   accessory.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/14 16:50:59 by qdang             #+#    #+#             */
-/*   Updated: 2020/08/04 11:55:43 by qdang            ###   ########.fr       */
+/*   Created: 2020/07/20 11:12:00 by qdang             #+#    #+#             */
+/*   Updated: 2020/09/17 17:11:00 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,48 @@ void	ft_error(int err)
 		ft_putstr_fd("Error\nThere are missing / extra information.\n", 2);
 	else if (err == MAP_ERR)
 		ft_putstr_fd("Error\nThe map is invalid.\n", 2);
+	system("leaks cub3D");
 	exit(EXIT_FAILURE);
+}
+
+void	free_split(char **str)
+{
+	int		i;
+
+	i = 0;
+	if (str != NULL)
+	{
+		while (str[i] != NULL)
+		{
+			free(str[i]);
+			i++;
+		}
+		free(str);
+	}
+}
+
+void	free_info(t_info *s)
+{
+	int		i;
+
+	i = -1;
+	free(s->no);
+	free(s->so);
+	free(s->we);
+	free(s->ea);
+	free(s->s);
+	if (s->map != NULL)
+	{
+		while (++i < s->ms.y)
+			free(s->map[i]);
+		free(s->map);
+	}
+	free(s);
+}
+
+int		close_scene(t_info *s)
+{
+	free_info(s);
+	system("leaks cub3D");
+	exit(0);
 }

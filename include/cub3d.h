@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 18:41:18 by qdang             #+#    #+#             */
-/*   Updated: 2020/09/13 20:09:34 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/17 17:04:59 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int		check_map(char *line, t_info *s);
 int		check_map_2(char *line);
 int		check_map_3(t_info *s);
 
-void	init_info(t_info *s);
 void	free_split(char **str);
 void	free_info(t_info *s);
 void	ft_error(int err);

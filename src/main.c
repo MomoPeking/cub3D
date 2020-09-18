@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 16:36:44 by qdang             #+#    #+#             */
-/*   Updated: 2020/09/14 14:41:24 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/17 17:09:31 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int			main(int ac, char **av)
 
 	err = 0;
 	s = (t_info	*)ft_memalloc(sizeof(t_info));
-	init_info(s);
+	s->sig_info = 1;
 	if (ac == 2)
 		err = read_and_store(av[1], s);
 	if (err != 0)
@@ -44,6 +44,9 @@ int			main(int ac, char **av)
 		ft_error(err);
 	}
 	create_scene(s);
-//	system("leaks cub3D");
 	return (0);
 }
+
+//	處理不時出現的豎線問題。
+//	處理endian。
+//	main中的邏輯問題(存bmp)？

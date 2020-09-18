@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 08:51:15 by qdang             #+#    #+#             */
-/*   Updated: 2020/09/15 09:40:31 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/17 17:03:09 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef	struct	s_info
 	char	sig_map;
 	char	**map;
 	char	start;
+	int		wall_cf;	
 	t_point	ms;
 	t_point	sp;
 	t_point	move;
