@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 08:51:15 by qdang             #+#    #+#             */
-/*   Updated: 2020/09/17 17:45:21 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/24 20:30:38 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,13 @@ typedef	struct	s_point
 	int		x;
 	int		y;
 }				t_point;
+
+typedef	struct	s_wall
+{
+	int		up;
+	int		down;
+	int		h;
+}				t_wall;
 
 typedef	struct	s_info
 {
@@ -59,6 +66,7 @@ typedef	struct	s_info
 	t_point grid;
 	t_point	stand;
 	t_point its;
+	t_point	tex;
 	char	wall;
 	double	sight;
 	double	length;

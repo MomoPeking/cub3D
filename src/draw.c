@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 14:53:54 by qdang             #+#    #+#             */
-/*   Updated: 2020/09/18 07:20:25 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/24 20:33:21 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,32 +69,44 @@ static void	draw_2d_sight(t_info *s)
 	draw_line(s, s->stand, s->its, BLUE);
 }
 
+static int	draw_vwall(t_info *s, t_wall w, int i, int k)
+{
+	int		temp;
+
+	temp = k;
+	while (++k < w.down)
+	{
+		if (w.h <= s->res.y)
+			s->tex.y = (k - temp) * 64 / w.h;
+		else
+			s->tex.y = (double)(k * 64 + (w.h - s->res.y) * 32) / w.h;
+		if (s->wall == 'N')
+			s->img_add[k * s->res.x + i] = s->no_add[s->tex.y * 64 + s->tex.x];
+		else if (s->wall == 'E')
+			s->img_add[k * s->res.x + i] = s->ea_add[s->tex.y * 64 + s->tex.x];
+		else if (s->wall == 'W')
+			s->img_add[k * s->res.x + i] = s->we_add[s->tex.y * 64 + s->tex.x];
+		else
+			s->img_add[k * s->res.x + i] = s->so_add[s->tex.y * 64 + s->tex.x];
+	}
+	return (k);
+}
+
 static void	draw_vline(t_info *s, int i)
 {
 	int		k;
-	int		wall_up;
-	int		wall_down;
+	t_wall	w;
 
-	wall_up = s->res.y / 2 - s->wall_cf / s->length / 2;
-	wall_down = s->res.y / 2 + s->wall_cf / s->length / 2;
-	wall_up < 0 ? wall_up = 0 : 0;
-	wall_down > s->res.y ? wall_down = s->res.y : 0;
+	w.up = s->res.y / 2 - s->wall_cf / s->length / 2;
+	w.down = s->res.y / 2 + s->wall_cf / s->length / 2;
+	w.h = w.down - w.up;
+	w.up < 0 ? w.up = 0 : 0;
+	w.down > s->res.y ? w.down = s->res.y : 0;
 	k = -1;
-	while (++k < wall_up)
+	while (++k < w.up)
 		s->img_add[k * s->res.x + i] = s->color_c;
 	k--;
-	if (s->wall == 'N')
-		while (++k < wall_down)
-			s->img_add[k * s->res.x + i] = s->no_add[k];
-	if (s->wall == 'E')
-		while (++k < wall_down)
-			s->img_add[k * s->res.x + i] = s->ea_add[k];
-	if (s->wall == 'S')
-		while (++k < wall_down)
-			s->img_add[k * s->res.x + i] = s->so_add[k];
-	if (s->wall == 'W')
-		while (++k < wall_down)
-			s->img_add[k * s->res.x + i] = s->we_add[k];
+	k = draw_vwall(s, w, i, k);
 	k--;
 	while (++k < s->res.y)
 		s->img_add[k * s->res.x + i] = s->color_f;
@@ -102,6 +114,7 @@ static void	draw_vline(t_info *s, int i)
 
 void		draw(t_info *s)
 {
+
 	int		i;
 	double	angle;
 
@@ -116,8 +129,41 @@ void		draw(t_info *s)
 		angle *= M_PI / 180;
 		calculate(s, s->sight + angle);
 		draw_vline(s, i);
+
 	}
 	draw_2d_sight(s);
 	draw_2d_frame(s);
+
+/*
+	void	*img_ptr;
+	int		tmp[2];
+
+	img_ptr = mlx_xpm_file_to_image(s->mlx_ptr, s->s, &tmp[0], &tmp[1]);
+	mlx_put_image_to_window(s->mlx_ptr, s->win_ptr, img_ptr, 900, 0);
+*/
+
+	int		a;
+	int		b;
+	int		x;
+	int		y;
+	int		n;
+	int		amber;
+	
+	a = -1;
+	b = -1;
+	n = 32;
+	x = 500;
+	y = 500;
+	
+	while (++a < n)
+	{
+		b = -1;
+		while (++b < n)
+		{
+			if ((amber = s->s_add[a * 64 * 64 / n + b * 64 / n]) != HOLLOW)
+				s->img_add[(x + a) * s->res.x + b + y] = amber;
+		}
+	}
 	mlx_put_image_to_window(s->mlx_ptr, s->win_ptr, s->img_ptr, 0, 0);
+//	把64 * 64圖壓縮到n * n呈現
 }

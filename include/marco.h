@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 08:49:12 by qdang             #+#    #+#             */
-/*   Updated: 2020/09/17 17:02:30 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/24 15:35:21 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,7 @@
 # define BLUE       0X00FFFF
 # define PINK       0XFF33FF
 # define ORANGE     0XFFA500
+
+# define HOLLOW		-16777216
 
 #endif

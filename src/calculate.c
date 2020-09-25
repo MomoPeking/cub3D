@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 21:08:21 by qdang             #+#    #+#             */
-/*   Updated: 2020/09/13 20:14:00 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/24 16:53:29 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,22 @@ void	calculate(t_info *s, double angle)
 		angle -= M_PI * 2;
 	if (angle >= 0 && angle < M_PI_2 - REDUND)
 		calc_quadrant_1(s, angle, dev);
-	if (angle >= M_PI_2 - REDUND && angle < M_PI - REDUND)
+	else if (angle >= M_PI_2 - REDUND && angle < M_PI - REDUND)
 		calc_quadrant_4(s, angle, dev);
-	if (angle >= M_PI - REDUND && angle < M_PI_2 * 3 - REDUND)
+	else if (angle >= M_PI - REDUND && angle < M_PI_2 * 3 - REDUND)
 		calc_quadrant_3(s, angle, dev);
-	if (angle >= M_PI_2 * 3 - REDUND && angle < M_PI * 2)
+	else
 		calc_quadrant_2(s, angle, dev);
 }
+
+/*
+void	calc_lentos(t_info *s)
+{
+	int		x;
+	int		y;
+
+	x = s->stand.x - s->grid.x;
+	y = s->stand.y - s->grid.y;
+	s->lentos = sqrt(x * x + y * y) * SL;
+}
+*/
