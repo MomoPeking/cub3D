@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 18:41:18 by qdang             #+#    #+#             */
-/*   Updated: 2020/09/24 20:30:52 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/28 02:09:37 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,8 @@ void	calc_quadrant_4(t_info *s, double angle, double dev);
 
 void	draw(t_info *s);
 void	draw_line(t_info *s, t_point p1, t_point p2, int color);
+void	draw_2d_sight(t_info *s);
+void	draw_2d_frame(t_info *s);
+void	draw_3d_vline(t_info *s, int i);
 
 #endif

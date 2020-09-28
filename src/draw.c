@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 14:53:54 by qdang             #+#    #+#             */
-/*   Updated: 2020/09/24 20:33:21 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/28 01:20:35 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	draw_2d_block(t_info *s, int x, int y, int color)
 	}
 }
 
-static void	draw_2d_frame(t_info *s)
+void		draw_2d_frame(t_info *s)
 {
 	int		i;
 	int		j;
@@ -49,7 +49,7 @@ static void	draw_2d_frame(t_info *s)
 	}
 }
 
-static void	draw_2d_sight(t_info *s)
+void		draw_2d_sight(t_info *s)
 {
 	int		i;
 	int		j;
@@ -69,12 +69,12 @@ static void	draw_2d_sight(t_info *s)
 	draw_line(s, s->stand, s->its, BLUE);
 }
 
-static int	draw_vwall(t_info *s, t_wall w, int i, int k)
+static int	draw_3d_wall(t_info *s, t_wall w, int i, int k)
 {
 	int		temp;
 
 	temp = k;
-	while (++k < w.down)
+	while (++k < w.down - 1)
 	{
 		if (w.h <= s->res.y)
 			s->tex.y = (k - temp) * 64 / w.h;
@@ -92,7 +92,7 @@ static int	draw_vwall(t_info *s, t_wall w, int i, int k)
 	return (k);
 }
 
-static void	draw_vline(t_info *s, int i)
+void		draw_3d_vline(t_info *s, int i)
 {
 	int		k;
 	t_wall	w;
@@ -106,64 +106,8 @@ static void	draw_vline(t_info *s, int i)
 	while (++k < w.up)
 		s->img_add[k * s->res.x + i] = s->color_c;
 	k--;
-	k = draw_vwall(s, w, i, k);
+	k = draw_3d_wall(s, w, i, k);
 	k--;
 	while (++k < s->res.y)
 		s->img_add[k * s->res.x + i] = s->color_f;
-}
-
-void		draw(t_info *s)
-{
-
-	int		i;
-	double	angle;
-
-	s->grid.x = s->sp.x + s->move.x;
-	s->grid.y = s->sp.y + s->move.y;
-	s->stand.x = (s->grid.x + 0.5) * SL;
-	s->stand.y = (s->grid.y + 0.5) * SL;
-	i = -1;
-	while (++i < s->res.x)
-	{
-		angle = (double)(i + 1) / s->res.x * FOV;
-		angle *= M_PI / 180;
-		calculate(s, s->sight + angle);
-		draw_vline(s, i);
-
-	}
-	draw_2d_sight(s);
-	draw_2d_frame(s);
-
-/*
-	void	*img_ptr;
-	int		tmp[2];
-
-	img_ptr = mlx_xpm_file_to_image(s->mlx_ptr, s->s, &tmp[0], &tmp[1]);
-	mlx_put_image_to_window(s->mlx_ptr, s->win_ptr, img_ptr, 900, 0);
-*/
-
-	int		a;
-	int		b;
-	int		x;
-	int		y;
-	int		n;
-	int		amber;
-	
-	a = -1;
-	b = -1;
-	n = 32;
-	x = 500;
-	y = 500;
-	
-	while (++a < n)
-	{
-		b = -1;
-		while (++b < n)
-		{
-			if ((amber = s->s_add[a * 64 * 64 / n + b * 64 / n]) != HOLLOW)
-				s->img_add[(x + a) * s->res.x + b + y] = amber;
-		}
-	}
-	mlx_put_image_to_window(s->mlx_ptr, s->win_ptr, s->img_ptr, 0, 0);
-//	把64 * 64圖壓縮到n * n呈現
 }

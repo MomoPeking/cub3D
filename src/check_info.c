@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/19 17:42:45 by qdang             #+#    #+#             */
-/*   Updated: 2020/08/18 22:49:16 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/28 01:06:55 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,8 @@ int		check_color(char **color)
 
 int		check_stand(t_info *s, int x, int y)
 {
-	if (s->map[s->grid.y + y][s->grid.x + x] == '0' ||
-		s->map[s->grid.y + y][s->grid.x + x] == s->start)
-		return (1);
-	else
+	if (s->map[s->grid.y + y][s->grid.x + x] == '1')
 		return (0);
+	else
+		return (1);
 }

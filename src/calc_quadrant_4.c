@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 10:34:25 by qdang             #+#    #+#             */
-/*   Updated: 2020/09/24 20:34:45 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/28 01:37:42 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	calc_quadrant_4_i(t_info *s, double angle)
 	temp_x = s->grid.x + 1 + i;
 	if (temp_y <= s->ms.y - 1 && temp_x <= s->ms.x - 1)
 		c = s->map[temp_y][temp_x];
-	while (c == '0' || c == s->start)
+	while (c != '1')
 	{
 		i++;
 		temp_y = s->grid.y + (int)(0.5 + (0.5 + i) * tan(angle));
@@ -51,7 +51,7 @@ static int	calc_quadrant_4_j(t_info *s, double angle)
 	temp_x = s->grid.x + (int)(0.5 + (0.5 + j) / tan(angle));
 	if (temp_y <= s->ms.y - 1 && temp_x <= s->ms.x - 1)
 		c = s->map[temp_y][temp_x];
-	while (c == '0' || c == s->start)
+	while (c != '1')
 	{
 		j++;
 		temp_y = s->grid.y + 1 + j;
@@ -71,7 +71,7 @@ static void	calc_quadrant_4_0(t_info *s)
 
 	i = 0;
 	c = s->map[s->grid.y][s->grid.x + 1];
-	while (c == '0' || c == s->start)
+	while (c != '1')
 	{
 		i++;
 		c = s->map[s->grid.y][s->grid.x + 1 + i];
@@ -80,6 +80,18 @@ static void	calc_quadrant_4_0(t_info *s)
 	s->its.x = s->stand.x + s->length;
 	s->its.y = s->stand.y;
 	s->tex.x = 32;
+	s->wall = 'E';
+}
+
+static void	calc_quadrant_4_1(t_info *s, int i, double angle, double dev)
+{
+	s->its.x = s->stand.x + (int)((0.5 + i) * SL);
+	s->its.y = s->stand.y + (int)((0.5 + i) * SL * tan(angle));
+	s->length = (0.5 + i) * SL / cos(angle);
+	s->tex.x = s->length * sin(angle) * 64 / SL + 32;
+	while (s->tex.x >= 64)
+		s->tex.x -= 64;
+	s->length *= cos(dev);
 	s->wall = 'E';
 }
 
@@ -96,16 +108,7 @@ void		calc_quadrant_4(t_info *s, double angle, double dev)
 		i = calc_quadrant_4_i(s, angle);
 		j = calc_quadrant_4_j(s, angle);
 		if ((int)((0.5 + i) * SL) <= (int)((0.5 + j) * SL / tan(angle)))
-		{
-			s->its.x = s->stand.x + (int)((0.5 + i) * SL);
-			s->its.y = s->stand.y + (int)((0.5 + i) * SL * tan(angle));
-			s->length = (0.5 + i) * SL / cos(angle);
-			s->tex.x = s->length * sin(angle) * 64 / SL + 32;
-			while (s->tex.x >= 64)
-				s->tex.x -= 64;
-			s->length *= cos(dev);
-			s->wall = 'E';
-		}
+			calc_quadrant_4_1(s, i, angle, dev);
 		else
 		{
 			s->its.x = s->stand.x + (int)((0.5 + j) * SL / tan(angle));

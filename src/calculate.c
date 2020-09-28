@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 21:08:21 by qdang             #+#    #+#             */
-/*   Updated: 2020/09/24 16:53:29 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/28 01:57:05 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,26 @@ void	calculate(t_info *s, double angle)
 		calc_quadrant_2(s, angle, dev);
 }
 
-/*
-void	calc_lentos(t_info *s)
+void	draw(t_info *s)
 {
-	int		x;
-	int		y;
+	int		i;
+	double	angle;
 
-	x = s->stand.x - s->grid.x;
-	y = s->stand.y - s->grid.y;
-	s->lentos = sqrt(x * x + y * y) * SL;
+	s->grid.x = s->sp.x + s->move.x;
+	s->grid.y = s->sp.y + s->move.y;
+	if (s->map[s->grid.y][s->grid.x] == '2')
+		s->map[s->grid.y][s->grid.x] = '0';
+	s->stand.x = (s->grid.x + 0.5) * SL;
+	s->stand.y = (s->grid.y + 0.5) * SL;
+	i = -1;
+	while (++i < s->res.x)
+	{
+		angle = (double)(i + 1) / s->res.x * FOV;
+		angle *= M_PI / 180;
+		calculate(s, s->sight + angle);
+		draw_3d_vline(s, i);
+	}
+	draw_2d_sight(s);
+	draw_2d_frame(s);
+	mlx_put_image_to_window(s->mlx_ptr, s->win_ptr, s->img_ptr, 0, 0);
 }
-*/

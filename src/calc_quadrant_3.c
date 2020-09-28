@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 10:43:10 by qdang             #+#    #+#             */
-/*   Updated: 2020/09/24 20:34:30 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/28 02:08:26 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,18 @@ static void	calc_quadrant_3_0(t_info *s)
 	s->wall = 'S';
 }
 
+static void	calc_quadrant_3_1(t_info *s, int i, double angle, double dev)
+{
+	s->its.x = s->stand.x - (int)((0.5 + i) * SL * tan(angle));
+	s->its.y = s->stand.y + (int)((0.5 + i) * SL);
+	s->length = (0.5 + i) * SL / cos(angle);
+	s->tex.x = s->length * sin(angle) * 64 / SL + 32;
+	while (s->tex.x >= 64)
+		s->tex.x -= 64;
+	s->length *= cos(dev);
+	s->wall = 'S';
+}
+
 void		calc_quadrant_3(t_info *s, double angle, double dev)
 {
 	int		i;
@@ -96,16 +108,7 @@ void		calc_quadrant_3(t_info *s, double angle, double dev)
 		i = calc_quadrant_3_i(s, angle);
 		j = calc_quadrant_3_j(s, angle);
 		if ((int)((0.5 + i) * SL) <= (int)((0.5 + j) * SL / tan(angle)))
-		{
-			s->its.x = s->stand.x - (int)((0.5 + i) * SL * tan(angle));
-			s->its.y = s->stand.y + (int)((0.5 + i) * SL);
-			s->length = (0.5 + i) * SL / cos(angle);
-			s->tex.x = s->length * sin(angle) * 64 / SL + 32;
-			while (s->tex.x >= 64)
-				s->tex.x -= 64;
-			s->length *= cos(dev);
-			s->wall = 'S';
-		}
+			calc_quadrant_3_1(s, i, angle, dev);
 		else
 		{
 			s->its.x = s->stand.x - (int)((0.5 + j) * SL);
