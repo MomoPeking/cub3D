@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 14:53:54 by qdang             #+#    #+#             */
-/*   Updated: 2020/09/28 01:20:35 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/30 17:46:59 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	draw_2d_block(t_info *s, int x, int y, int color)
 	{
 		j = -1;
 		while (++j < SL)
-			s->img_add[(i + y) * s->res.x + x + j] = color;
+			s->img_add[(i + y) * s->sl + x + j] = color;
 	}
 }
 
@@ -81,13 +81,13 @@ static int	draw_3d_wall(t_info *s, t_wall w, int i, int k)
 		else
 			s->tex.y = (double)(k * 64 + (w.h - s->res.y) * 32) / w.h;
 		if (s->wall == 'N')
-			s->img_add[k * s->res.x + i] = s->no_add[s->tex.y * 64 + s->tex.x];
+			s->img_add[k * s->sl + i] = s->no_add[s->tex.y * 64 + s->tex.x];
 		else if (s->wall == 'E')
-			s->img_add[k * s->res.x + i] = s->ea_add[s->tex.y * 64 + s->tex.x];
+			s->img_add[k * s->sl + i] = s->ea_add[s->tex.y * 64 + s->tex.x];
 		else if (s->wall == 'W')
-			s->img_add[k * s->res.x + i] = s->we_add[s->tex.y * 64 + s->tex.x];
+			s->img_add[k * s->sl + i] = s->we_add[s->tex.y * 64 + s->tex.x];
 		else
-			s->img_add[k * s->res.x + i] = s->so_add[s->tex.y * 64 + s->tex.x];
+			s->img_add[k * s->sl + i] = s->so_add[s->tex.y * 64 + s->tex.x];
 	}
 	return (k);
 }
@@ -104,10 +104,10 @@ void		draw_3d_vline(t_info *s, int i)
 	w.down > s->res.y ? w.down = s->res.y : 0;
 	k = -1;
 	while (++k < w.up)
-		s->img_add[k * s->res.x + i] = s->color_c;
+		s->img_add[k * s->sl + i] = s->color_c;
 	k--;
 	k = draw_3d_wall(s, w, i, k);
 	k--;
 	while (++k < s->res.y)
-		s->img_add[k * s->res.x + i] = s->color_f;
+		s->img_add[k * s->sl + i] = s->color_f;
 }

@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 08:51:15 by qdang             #+#    #+#             */
-/*   Updated: 2020/09/24 20:30:38 by qdang            ###   ########.fr       */
+/*   Updated: 2020/09/30 17:45:01 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef	struct	s_wall
 typedef	struct	s_info
 {
 	t_point	res;
+	int		sl;
 	char	*no;
 	int		*no_add;
 	char	*so;

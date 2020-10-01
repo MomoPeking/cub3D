@@ -6,7 +6,7 @@
 #    By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/14 11:38:08 by qdang             #+#    #+#              #
-#    Updated: 2020/09/18 16:15:12 by qdang            ###   ########.fr        #
+#    Updated: 2020/09/30 14:08:27 by qdang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ LIB_PATH = ./libft
 LIB_LINK = -I $(LIB_PATH) -L $(LIB_PATH) -lft
 
 MLX_PATH = ./minilibx
-MLX_LINK = -I $(MLX_PATH) -L $(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
+MLX_LINK = -I $(MLX_PATH) -L $(MLX_PATH) -lmlx -framework OpenGL -framework AppKit -lz
 
 SRC_PATH = ./src
 SRC = $(addprefix $(SRC_PATH)/,$(SOURCE))
@@ -38,6 +38,7 @@ $(NAME):
 	@make -C $(MLX_PATH)
 	@gcc -c  $(SRC) -I $(HED)
 	@gcc $(MLX_LINK) $(LIB_LINK) $(OBJ) -o $(NAME)
+	@mv ./minilibx/libmlx.dylib ./
 
 all: $(NAME)
 
@@ -48,7 +49,7 @@ clean:
 
 fclean: clean
 	@make fclean -C $(LIB_PATH)
-	@rm -f $(NAME)
+	@rm -f $(NAME) libmlx.dylib
 
 re: fclean all
 
