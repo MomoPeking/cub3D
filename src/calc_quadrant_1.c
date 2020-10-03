@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 10:27:35 by qdang             #+#    #+#             */
-/*   Updated: 2020/09/28 01:32:06 by qdang            ###   ########.fr       */
+/*   Updated: 2020/10/03 06:46:06 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ void		calc_quadrant_1(t_info *s, double angle, double dev)
 		{
 			s->its.x = s->stand.x + (int)((0.5 + j) * SL);
 			s->its.y = s->stand.y - (int)((0.5 + j) * SL / tan(angle));
-			s->length = (int)((0.5 + j) * SL) / sin(angle);
+			s->length = (0.5 + j) * SL / sin(angle);
 			s->tex.x = -1 * s->length * cos(angle) * 64 / SL - 32;
 			while (s->tex.x < 0)
 				s->tex.x += 64;

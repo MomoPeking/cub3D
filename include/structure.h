@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 08:51:15 by qdang             #+#    #+#             */
-/*   Updated: 2020/09/30 17:45:01 by qdang            ###   ########.fr       */
+/*   Updated: 2020/10/03 06:36:37 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 /*
 ** wall_cf is a coefficient to make sure the wall is shown as a square.
+** sl stands for size_line which mlx_get_data_addr() is using.
 ** ms(x, y) in grids is the map size of the map in rectangular, start from 1.
 ** sp(x, y) in grids are the coordinates of startpoint N/E/W/S, start from 0.
 ** move(x, y) in grids are the coordinates the player moved from the sp.
