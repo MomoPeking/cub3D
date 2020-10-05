@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 08:51:15 by qdang             #+#    #+#             */
-/*   Updated: 2020/10/03 06:36:37 by qdang            ###   ########.fr       */
+/*   Updated: 2020/10/05 11:17:06 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,16 @@ typedef	struct	s_wall
 	int		down;
 	int		h;
 }				t_wall;
+
+typedef	struct	s_sprite
+{
+	t_point			loc;
+	double			len;
+	double			ang;
+	double			ang_rd;
+	unsigned char	ex;
+}				t_sprite;
+
 
 typedef	struct	s_info
 {

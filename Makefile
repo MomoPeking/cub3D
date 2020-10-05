@@ -6,7 +6,7 @@
 #    By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/14 11:38:08 by qdang             #+#    #+#              #
-#    Updated: 2020/09/30 14:08:27 by qdang            ###   ########.fr        #
+#    Updated: 2020/10/05 11:22:01 by qdang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ FLAGS = -Wall -Wextra -Werror
 
 SOURCE = main.c accessory.c check_info.c check_map.c \
 			store_info.c store_texture.c store_other.c \
-			draw.c draw_line.c press_key.c calculate.c \
+			draw.c draw_line.c press_key.c calculate.c sprite.c \
 			calc_quadrant_1.c calc_quadrant_2.c \
 			calc_quadrant_3.c calc_quadrant_4.c \
 

@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 21:08:21 by qdang             #+#    #+#             */
-/*   Updated: 2020/10/03 08:13:28 by qdang            ###   ########.fr       */
+/*   Updated: 2020/10/05 11:22:29 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,10 @@ void	calculate(t_info *s, double angle)
 
 void	draw(t_info *s)
 {
-	int		i;
-	double	angle;
+	int			i;
+	double		angle;
+	int			nb;
+	t_sprite	*sp;
 
 	s->grid.x = s->sp.x + s->move.x;
 	s->grid.y = s->sp.y + s->move.y;
@@ -53,6 +55,21 @@ void	draw(t_info *s)
 		s->map[s->grid.y][s->grid.x] = '0';
 	s->stand.x = (s->grid.x + 0.5) * SL;
 	s->stand.y = (s->grid.y + 0.5) * SL;
+
+	nb = nb_sprite(s);
+	if (nb > 0)
+	{
+		sp = (t_sprite *)ft_memalloc(sizeof(t_sprite) * nb);
+		store_sprite(s, sp, nb);
+
+		int		k = -1;
+		printf("nb: %d, stand: (%d, %d)\n", nb, s->grid.x, s->grid.y);
+		while (++k < nb)
+			printf("%d: (%d, %d), len: %f, ex: %d\n", k + 1, sp[k].loc.x, sp[k].loc.y, sp[k].len, sp[k].ex);
+	}
+	if (nb == 0)
+		printf("nb: %d, stand: (%d, %d)\n", nb, s->grid.x, s->grid.y);
+
 	i = -1;
 	while (++i < s->res.x)
 	{
@@ -63,5 +80,6 @@ void	draw(t_info *s)
 	}
 	draw_2d_sight(s);
 	draw_2d_frame(s);
+	nb > 0 ? free(sp) : 0;
 	mlx_put_image_to_window(s->mlx_ptr, s->win_ptr, s->img_ptr, 0, 0);
 }

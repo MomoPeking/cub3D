@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 14:53:54 by qdang             #+#    #+#             */
-/*   Updated: 2020/09/30 17:46:59 by qdang            ###   ########.fr       */
+/*   Updated: 2020/10/04 11:48:41 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ void		draw_2d_sight(t_info *s)
 	{
 		j = -1;
 		while (++j < s->ms.x)
-			if (s->map[i][j] != '1' && s->map[i][j] != '2'
+			if (s->map[i][j] != '1'
+				&& s->map[i][j] != '2'
 				&& s->map[i][j] != ' ')
 				draw_2d_block(s, j * SL, i * SL, WHITE);
 	}
@@ -74,7 +75,7 @@ static int	draw_3d_wall(t_info *s, t_wall w, int i, int k)
 	int		temp;
 
 	temp = k;
-	while (++k < w.down - 1)
+	while (++k < w.down)
 	{
 		if (w.h <= s->res.y)
 			s->tex.y = (k - temp) * 64 / w.h;
@@ -111,3 +112,7 @@ void		draw_3d_vline(t_info *s, int i)
 	while (++k < s->res.y)
 		s->img_add[k * s->sl + i] = s->color_f;
 }
+
+//	牆可以擋住小精靈，小精靈也可以擋住牆。
+//	簡化模型，目前只按照中點判斷是否在視野之內，只考慮一個sprite的情況。
+//	在calc方程中 確定是否能看到spirte？
