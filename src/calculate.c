@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 21:08:21 by qdang             #+#    #+#             */
-/*   Updated: 2020/10/05 11:22:29 by qdang            ###   ########.fr       */
+/*   Updated: 2020/10/07 16:48:27 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,13 @@ void	calculate(t_info *s, double angle)
 
 void	draw(t_info *s)
 {
-	int			i;
 	double		angle;
+	double		dev;
+	double		len;
 	int			nb;
 	t_sprite	*sp;
+	int			i;
+	int			j;
 
 	s->grid.x = s->sp.x + s->move.x;
 	s->grid.y = s->sp.y + s->move.y;
@@ -55,28 +58,43 @@ void	draw(t_info *s)
 		s->map[s->grid.y][s->grid.x] = '0';
 	s->stand.x = (s->grid.x + 0.5) * SL;
 	s->stand.y = (s->grid.y + 0.5) * SL;
-
 	nb = nb_sprite(s);
-	if (nb > 0)
-	{
-		sp = (t_sprite *)ft_memalloc(sizeof(t_sprite) * nb);
-		store_sprite(s, sp, nb);
-
-		int		k = -1;
-		printf("nb: %d, stand: (%d, %d)\n", nb, s->grid.x, s->grid.y);
-		while (++k < nb)
-			printf("%d: (%d, %d), len: %f, ex: %d\n", k + 1, sp[k].loc.x, sp[k].loc.y, sp[k].len, sp[k].ex);
-	}
-	if (nb == 0)
-		printf("nb: %d, stand: (%d, %d)\n", nb, s->grid.x, s->grid.y);
-
+	nb > 0 ? sp = (t_sprite *)ft_memalloc(sizeof(t_sprite) * nb) : 0;
+	nb > 0 ? store_sprite(s, sp, nb) : 0;
+	sort_sprite(sp, nb);
 	i = -1;
 	while (++i < s->res.x)
 	{
-		angle = (double)(i + 1) / s->res.x * FOV;
-		angle *= M_PI / 180;
-		calculate(s, s->sight + angle);
+		angle = s->sight + (double)(i + 1) / s->res.x * FOV * M_PI / 180;
+		calculate(s, angle);
+		while (angle < 0)
+			angle += M_PI * 2;
+		while (angle >= M_PI * 2)
+			angle -= M_PI * 2;
+		j = -1;
+		while (++j < nb)
+		{
+			dev = -1;
+			(sp[j].ang > angle && sp[j].ang - angle < sp[j].ang_rd) ||
+				(sp[j].ang <= angle && angle - sp[j].ang < sp[j].ang_rd)
+					? dev = angle - sp[j].ang : 0;
+			sp[j].ang > angle && angle + M_PI * 2 - sp[j].ang < sp[j].ang_rd
+				? dev = angle + M_PI * 2 - sp[j].ang : 0;
+			sp[j].ang <= angle && sp[j].ang + M_PI * 2 - angle < sp[j].ang_rd
+				? dev = angle - sp[j].ang - M_PI * 2 : 0;
+			if (dev != -1)
+			{
+				len = sp[j].len_c * cos(dev);
+				len < s->length ? sp[j].ex = 1 : 0;
+				len > s->length ? sp[j].ex = 0 : 0;
+			}
+			dev != -1 ? sp[j].tex.x = tan(dev) * sp[j].len_c * 64 / SL + 32 : 0;
+		}
 		draw_3d_vline(s, i);
+		j = -1;
+		while (++j < nb)
+			if (sp[j].ex == 1)
+				draw_sprite(s, sp, i, j);
 	}
 	draw_2d_sight(s);
 	draw_2d_frame(s);

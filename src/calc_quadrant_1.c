@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 10:27:35 by qdang             #+#    #+#             */
-/*   Updated: 2020/10/05 11:35:29 by qdang            ###   ########.fr       */
+/*   Updated: 2020/10/06 15:07:58 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	calc_quadrant_1_i(t_info *s, double angle)
 	temp_x = s->grid.x + (int)(0.5 + (0.5 + i) * tan(angle));
 	if (temp_y >= 0 && temp_x <= s->ms.x - 1)
 		c = s->map[temp_y][temp_x];
-	while (c != '1' && c != '2')
+	while (c != '1')
 	{
 		i++;
 		temp_y = s->grid.y - 1 - i;
@@ -51,7 +51,7 @@ static int	calc_quadrant_1_j(t_info *s, double angle)
 	temp_x = s->grid.x + 1 + j;
 	if (temp_y >= 0 && temp_x <= s->ms.x - 1)
 		c = s->map[temp_y][temp_x];
-	while (c != '1' && c != '2')
+	while (c != '1')
 	{
 		j++;
 		temp_y = s->grid.y - (int)(0.5 + (0.5 + j) / tan(angle));
@@ -71,7 +71,7 @@ static void	calc_quadrant_1_0(t_info *s)
 
 	i = 0;
 	c = s->map[s->grid.y - 1][s->grid.x];
-	while (c != '1' && c != '2')
+	while (c != '1')
 	{
 		i++;
 		c = s->map[s->grid.y - 1 - i][s->grid.x];

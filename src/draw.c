@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 14:53:54 by qdang             #+#    #+#             */
-/*   Updated: 2020/10/04 11:48:41 by qdang            ###   ########.fr       */
+/*   Updated: 2020/10/07 16:46:51 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static int	draw_3d_wall(t_info *s, t_wall w, int i, int k)
 	int		temp;
 
 	temp = k;
-	while (++k < w.down)
+	while (++k < w.down - 1)
 	{
 		if (w.h <= s->res.y)
 			s->tex.y = (k - temp) * 64 / w.h;
@@ -96,10 +96,12 @@ static int	draw_3d_wall(t_info *s, t_wall w, int i, int k)
 void		draw_3d_vline(t_info *s, int i)
 {
 	int		k;
+	int		temp;
 	t_wall	w;
 
-	w.up = s->res.y / 2 - s->wall_cf / s->length / 2;
-	w.down = s->res.y / 2 + s->wall_cf / s->length / 2;
+	temp = s->wall_cf / s->length / 2;
+	w.up = s->res.y / 2 - temp;
+	w.down = s->res.y / 2 + temp;
 	w.h = w.down - w.up;
 	w.up < 0 ? w.up = 0 : 0;
 	w.down > s->res.y ? w.down = s->res.y : 0;
@@ -112,7 +114,3 @@ void		draw_3d_vline(t_info *s, int i)
 	while (++k < s->res.y)
 		s->img_add[k * s->sl + i] = s->color_f;
 }
-
-//	牆可以擋住小精靈，小精靈也可以擋住牆。
-//	簡化模型，目前只按照中點判斷是否在視野之內，只考慮一個sprite的情況。
-//	在calc方程中 確定是否能看到spirte？

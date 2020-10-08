@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 18:41:18 by qdang             #+#    #+#             */
-/*   Updated: 2020/10/05 11:21:51 by qdang            ###   ########.fr       */
+/*   Updated: 2020/10/07 16:08:58 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,7 @@ void	draw_3d_vline(t_info *s, int i);
 
 int		nb_sprite(t_info *s);
 void	store_sprite(t_info *s, t_sprite *sp, int nb);
+void	draw_sprite(t_info *s, t_sprite *sp, int i, int j);
+void	sort_sprite(t_sprite *sp, int nb);
 
 #endif

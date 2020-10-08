@@ -6,27 +6,12 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 08:51:15 by qdang             #+#    #+#             */
-/*   Updated: 2020/10/05 11:17:06 by qdang            ###   ########.fr       */
+/*   Updated: 2020/10/07 17:22:38 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURE_H
 # define STRUCTURE_H
-
-/*
-** wall_cf is a coefficient to make sure the wall is shown as a square.
-** sl stands for size_line which mlx_get_data_addr() is using.
-** ms(x, y) in grids is the map size of the map in rectangular, start from 1.
-** sp(x, y) in grids are the coordinates of startpoint N/E/W/S, start from 0.
-** move(x, y) in grids are the coordinates the player moved from the sp.
-** grid(x, y) in grids are the coordinates where they player at now(sp + move).
-** stand(x, y) are the coordinates where the player stands on the screen.
-** its(x, y) are the coordinates a sight intersect with a wall or an object.
-** wall is the "N/E/S/W" face of the wall where the sight hits;
-** sight is an angle where the casting start.
-** length is the distance from stand(x, y) to its(x, y). Then we use length to
-** calculate the height of the wall.
-*/
 
 typedef	struct	s_point
 {
@@ -44,12 +29,27 @@ typedef	struct	s_wall
 typedef	struct	s_sprite
 {
 	t_point			loc;
-	double			len;
+	t_point			tex;
 	double			ang;
 	double			ang_rd;
+	double			len_c;
 	unsigned char	ex;
 }				t_sprite;
 
+/*
+** wall_cf is a coefficient to make sure the wall is shown as a square.
+** sl stands for size_line which mlx_get_data_addr() is using.
+** ms(x, y) in grids is the map size of the map in rectangular, start from 1.
+** sp(x, y) in grids are the coordinates of startpoint N/E/W/S, start from 0.
+** move(x, y) in grids are the coordinates the player moved from the sp.
+** grid(x, y) in grids are the coordinates where they player at now(sp + move).
+** stand(x, y) are the coordinates where the player stands on the screen.
+** its(x, y) are the coordinates a sight intersect with a wall or an object.
+** wall is the "N/E/S/W" face of the wall where the sight hits;
+** sight is an angle where the casting start.
+** length is the distance from stand(x, y) to its(x, y). Then we use length to
+** calculate the height of the wall.
+*/
 
 typedef	struct	s_info
 {
