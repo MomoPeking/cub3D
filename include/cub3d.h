@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 18:41:18 by qdang             #+#    #+#             */
-/*   Updated: 2020/10/07 16:08:58 by qdang            ###   ########.fr       */
+/*   Updated: 2020/10/08 17:14:19 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include "./structure.h"
 # include <fcntl.h>
 # include <math.h>
-# include <stdio.h> // 記得刪除
 
 int		count_split(char **str);
 int		check_unsigned_int(char *str);

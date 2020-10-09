@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 16:36:44 by qdang             #+#    #+#             */
-/*   Updated: 2020/10/07 17:11:08 by qdang            ###   ########.fr       */
+/*   Updated: 2020/10/08 17:45:09 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,9 @@ static void	create_scene(t_info *s)
 
 	s->mlx_ptr = mlx_init();
 	mlx_get_screen_size(s->mlx_ptr, &tmp[0], &tmp[1]);
-//	printf("res: %d, %d\n", s->res.x, s->res.y);
-//	printf("max: %d, %d\n", tmp[0], tmp[1]);
 	s->res.x > tmp[0] ? s->res.x = tmp[0] : 0;
 	s->res.y > tmp[1] ? s->res.y = tmp[1] : 0;
-//	printf("res: %d, %d\n", s->res.x, s->res.y);
+	s->wall_cf = s->res.x * SL / 2 / tan(FOV / 2 * M_PI / 180);
 	s->win_ptr = mlx_new_window(s->mlx_ptr, s->res.x, s->res.y, "cub3D");
 	s->img_ptr = mlx_new_image(s->mlx_ptr, s->res.x, s->res.y);
 	s->img_add =
@@ -50,8 +48,3 @@ int			main(int ac, char **av)
 	create_scene(s);
 	return (0);
 }
-
-//	main中的邏輯問題(存bmp)？
-//	png作為texture？兩個識別系統？
-//	注意：別的牆面也可能會有中線問題，值得好好研究。
-//	當屏幕分辨率超大時的變形問題

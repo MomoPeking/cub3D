@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 08:51:15 by qdang             #+#    #+#             */
-/*   Updated: 2020/10/07 17:22:38 by qdang            ###   ########.fr       */
+/*   Updated: 2020/10/08 11:27:28 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,31 @@ typedef	struct	s_wall
 	int		h;
 }				t_wall;
 
+/*
+** loc(x, y) in grids is the location of a sprite.
+** tex(x, y) is the texture of the sprite in a certain sight.
+** ang_c is the absolute angle (0 ~ 2 * M_PI) from where the player stands
+** to the center of a sprite.
+** ang_rd is the maximum angle that a player can see the sprite if he cannot
+** see the center of a sprite.
+** len_c is the distance from where the player stands to the center of
+** a sprite.
+** ex is whether the player can see the sprite through a certain sight.
+*/
+
 typedef	struct	s_sprite
 {
 	t_point			loc;
 	t_point			tex;
-	double			ang;
+	double			ang_c;
 	double			ang_rd;
 	double			len_c;
 	unsigned char	ex;
 }				t_sprite;
 
 /*
-** wall_cf is a coefficient to make sure the wall is shown as a square.
 ** sl stands for size_line which mlx_get_data_addr() is using.
+** wall_cf is a coefficient to make sure the wall is shown as a square.
 ** ms(x, y) in grids is the map size of the map in rectangular, start from 1.
 ** sp(x, y) in grids are the coordinates of startpoint N/E/W/S, start from 0.
 ** move(x, y) in grids are the coordinates the player moved from the sp.

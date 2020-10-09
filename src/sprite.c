@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/03 09:18:39 by qdang             #+#    #+#             */
-/*   Updated: 2020/10/07 17:33:18 by qdang            ###   ########.fr       */
+/*   Created: 2020/10/08 17:10:57 by qdang             #+#    #+#             */
+/*   Updated: 2020/10/08 17:11:03 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,20 @@ int			nb_sprite(t_info *s)
 
 static void	store_sprite_2(t_info *s, t_sprite *sp, t_point loc, int i)
 {
-	double	ang_s;
-	double	ang_e;
-
 	sp[i].len_c =
 		sqrt(pow(s->grid.x - loc.x, 2) + pow(s->grid.y - loc.y, 2)) * SL;
-	loc.x == s->grid.x && loc.y > s->grid.y ? sp[i].ang = M_PI : 0;
-	loc.x == s->grid.x && loc.y < s->grid.y ? sp[i].ang = 0 : 0;
-	loc.x > s->grid.x && loc.y == s->grid.y ? sp[i].ang = M_PI_2 : 0;
-	loc.x < s->grid.x && loc.y == s->grid.y ? sp[i].ang = M_PI_2 * 3 : 0;
+	loc.x == s->grid.x && loc.y > s->grid.y ? sp[i].ang_c = M_PI : 0;
+	loc.x == s->grid.x && loc.y < s->grid.y ? sp[i].ang_c = 0 : 0;
+	loc.x > s->grid.x && loc.y == s->grid.y ? sp[i].ang_c = M_PI_2 : 0;
+	loc.x < s->grid.x && loc.y == s->grid.y ? sp[i].ang_c = M_PI_2 * 3 : 0;
 	if (loc.x > s->grid.x && loc.y < s->grid.y)
-		sp[i].ang = atan2(loc.x - s->grid.x, s->grid.y - loc.y);
+		sp[i].ang_c = atan2(loc.x - s->grid.x, s->grid.y - loc.y);
 	if (loc.x > s->grid.x && loc.y > s->grid.y)
-		sp[i].ang = M_PI - atan2(loc.x - s->grid.x, loc.y - s->grid.y);
+		sp[i].ang_c = M_PI - atan2(loc.x - s->grid.x, loc.y - s->grid.y);
 	if (loc.x < s->grid.x && loc.y > s->grid.y)
-		sp[i].ang = M_PI + atan2(s->grid.x - loc.x, loc.y - s->grid.y);
+		sp[i].ang_c = M_PI + atan2(s->grid.x - loc.x, loc.y - s->grid.y);
 	if (loc.x < s->grid.x && loc.y < s->grid.y)
-		sp[i].ang = M_PI * 2 - atan2(s->grid.x - loc.x, s->grid.y - loc.y);
+		sp[i].ang_c = M_PI * 2 - atan2(s->grid.x - loc.x, s->grid.y - loc.y);
 	sp[i].ang_rd = atan2(SL / 2, sp[i].len_c);
 }
 
@@ -124,7 +121,6 @@ void		draw_sprite(t_info *s, t_sprite *sp, int i, int j)
 		else
 			sp[j].tex.y = (double)(k * 64 + (w.h - s->res.y) * 32) / w.h;
 		if ((sprite = s->s_add[sp[j].tex.y * 64 + sp[j].tex.x]) != HOLLOW)
-			s->img_add[k * s->sl + i] =
-				s->s_add[sp[j].tex.y * 64 + sp[j].tex.x];
+			s->img_add[k * s->sl + i] = sprite;
 	}
 }

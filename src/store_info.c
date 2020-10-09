@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 12:11:22 by qdang             #+#    #+#             */
-/*   Updated: 2020/10/07 17:22:33 by qdang            ###   ########.fr       */
+/*   Updated: 2020/10/08 16:38:21 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ static int	store_info(t_info *s, int fd)
 		if (err != -1 && (err = check_map(line, s)) > 0)
 			return (err);
 	}
-	s->wall_cf = s->res.x * SL / 2 / tan(FOV / 2 * M_PI / 180);
 	s->sig_info != INFO_SIG ? err = INFO_ERR : 0;
 	s->ms.x <= 0 || s->ms.y <= 0 ? err = MAP_ERR : 0;
 	return (err);
