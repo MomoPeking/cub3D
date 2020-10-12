@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 14:53:54 by qdang             #+#    #+#             */
-/*   Updated: 2020/10/09 11:13:50 by qdang            ###   ########.fr       */
+/*   Updated: 2020/10/12 11:25:42 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static int	draw_3d_wall(t_info *s, t_wall w, int i, int k)
 	int		temp;
 
 	temp = k;
-	while (++k < w.down - 1)
+	while (++k < w.down)
 	{
 		if (w.h <= s->res.y)
 			s->tex.y = (k - temp) * 64 / w.h;

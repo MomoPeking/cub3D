@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 08:49:12 by qdang             #+#    #+#             */
-/*   Updated: 2020/10/09 11:11:32 by qdang            ###   ########.fr       */
+/*   Updated: 2020/10/12 13:16:07 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,7 @@
 # define RED	    0XFF0000
 # define WHITE      0XFFFFFF
 # define BLACK      0X000000
-
-# define LIME       0X00FF00
 # define BLUE       0X00FFFF
-# define PINK       0XFF33FF
-# define ORANGE     0XFFA500
 
 # define HOLLOW		-16777216
 

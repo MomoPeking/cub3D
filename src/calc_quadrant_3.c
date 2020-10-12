@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 10:43:10 by qdang             #+#    #+#             */
-/*   Updated: 2020/10/06 15:08:04 by qdang            ###   ########.fr       */
+/*   Updated: 2020/10/12 13:12:38 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,32 +93,35 @@ static void	calc_quadrant_3_1(t_info *s, int i, double angle, double dev)
 		s->tex.x -= 64;
 	s->length *= cos(dev);
 	s->wall = 'S';
+	if (tan(angle) > 1 - REDUND && tan(angle) < 1 + REDUND)
+		check_stand(s, -1, 0) == 0 ? s->wall = 'W' : 0;
 }
 
 void		calc_quadrant_3(t_info *s, double angle, double dev)
 {
-	int		i;
-	int		j;
+	t_point		p;
 
 	if (angle >= M_PI - REDUND && angle <= M_PI + REDUND)
 		calc_quadrant_3_0(s);
 	else
 	{
 		angle -= M_PI;
-		i = calc_quadrant_3_i(s, angle);
-		j = calc_quadrant_3_j(s, angle);
-		if ((int)((0.5 + i) * SL) <= (int)((0.5 + j) * SL / tan(angle)))
-			calc_quadrant_3_1(s, i, angle, dev);
+		p.x = calc_quadrant_3_i(s, angle);
+		p.y = calc_quadrant_3_j(s, angle);
+		if ((int)((0.5 + p.x) * SL) <= (int)((0.5 + p.y) * SL / tan(angle)))
+			calc_quadrant_3_1(s, p.x, angle, dev);
 		else
 		{
-			s->its.x = s->stand.x - (int)((0.5 + j) * SL);
-			s->its.y = s->stand.y + (int)((0.5 + j) * SL / tan(angle));
-			s->length = (0.5 + j) * SL / sin(angle);
+			s->its.x = s->stand.x - (int)((0.5 + p.y) * SL);
+			s->its.y = s->stand.y + (int)((0.5 + p.y) * SL / tan(angle));
+			s->length = (0.5 + p.y) * SL / sin(angle);
 			s->tex.x = -1 * s->length * cos(angle) * 64 / SL - 32;
 			while (s->tex.x < 0)
 				s->tex.x += 64;
 			s->length *= cos(dev);
 			s->wall = 'W';
+			if (tan(angle) > 1 - REDUND && tan(angle) < 1 + REDUND)
+				check_stand(s, 0, 1) == 0 ? s->wall = 'S' : 0;
 		}
 	}
 }
