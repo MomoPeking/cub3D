@@ -6,7 +6,7 @@
 #    By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/14 11:38:08 by qdang             #+#    #+#              #
-#    Updated: 2020/10/05 11:22:01 by qdang            ###   ########.fr        #
+#    Updated: 2020/10/12 11:08:10 by qdang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,10 @@ NAME = cub3D
 
 FLAGS = -Wall -Wextra -Werror
 
-SOURCE = main.c accessory.c check_info.c check_map.c \
+SOURCE = main.c check_info.c check_map.c \
 			store_info.c store_texture.c store_other.c \
-			draw.c draw_line.c press_key.c calculate.c sprite.c \
+			calc_draw.c draw_scene.c draw_line.c \
+			press_key.c save.c sprite.c accessory.c \
 			calc_quadrant_1.c calc_quadrant_2.c \
 			calc_quadrant_3.c calc_quadrant_4.c \
 
@@ -37,7 +38,7 @@ $(NAME):
 	@make -C $(LIB_PATH)
 	@make -C $(MLX_PATH)
 	@gcc -c  $(SRC) -I $(HED)
-	@gcc $(MLX_LINK) $(LIB_LINK) $(OBJ) -o $(NAME)
+	@gcc $(FLAGS) $(MLX_LINK) $(LIB_LINK) $(OBJ) -o $(NAME)
 	@mv ./minilibx/libmlx.dylib ./
 
 all: $(NAME)
@@ -49,7 +50,7 @@ clean:
 
 fclean: clean
 	@make fclean -C $(LIB_PATH)
-	@rm -f $(NAME) libmlx.dylib
+	@rm -f $(NAME) libmlx.dylib bitmap.bmp
 
 re: fclean all
 

@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/20 11:12:00 by qdang             #+#    #+#             */
-/*   Updated: 2020/10/08 17:10:47 by qdang            ###   ########.fr       */
+/*   Updated: 2020/10/12 11:10:29 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_error(t_info *s, int err)
 {
-	free_info(s);
+	err != AUG_ERR ? free_info(s) : 0;
 	if (err == OPEN_ERR)
 		ft_putstr_fd("Error\nCannot open the map.\n", 2);
 	else if (err == CLOSE_ERR)
@@ -33,6 +33,8 @@ void	ft_error(t_info *s, int err)
 		ft_putstr_fd("Error\nThere are missing / extra information.\n", 2);
 	else if (err == MAP_ERR)
 		ft_putstr_fd("Error\nThe map is invalid.\n", 2);
+	else if (err == AUG_ERR)
+		ft_putstr_fd("Error\nThe argument is invalid.\n", 2);
 	exit(EXIT_FAILURE);
 }
 

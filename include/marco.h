@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 08:49:12 by qdang             #+#    #+#             */
-/*   Updated: 2020/10/05 07:03:49 by qdang            ###   ########.fr       */
+/*   Updated: 2020/10/09 11:11:32 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define COL_ERR	7
 # define INFO_ERR	8
 # define MAP_ERR	9
+# define AUG_ERR	10
 
 # define R_SIG		2
 # define NO_SIG		3

@@ -6,7 +6,7 @@
 /*   By: qdang <qdang@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 18:41:18 by qdang             #+#    #+#             */
-/*   Updated: 2020/10/08 17:14:19 by qdang            ###   ########.fr       */
+/*   Updated: 2020/10/09 11:27:22 by qdang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,7 @@ int		nb_sprite(t_info *s);
 void	store_sprite(t_info *s, t_sprite *sp, int nb);
 void	draw_sprite(t_info *s, t_sprite *sp, int i, int j);
 void	sort_sprite(t_sprite *sp, int nb);
+
+void	save_scene(t_info *s);
 
 #endif
